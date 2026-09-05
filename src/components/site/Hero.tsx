@@ -18,49 +18,37 @@ export function Hero() {
   return (
     <section
       id="hero"
-      className="relative isolate w-full overflow-hidden bg-[linear-gradient(160deg,#2a0e5e_0%,#42198a_45%,#5b21b6_100%)]"
+      className="relative isolate w-full overflow-hidden bg-[linear-gradient(155deg,#EDE4FF_0%,#F6F1FF_38%,#FFFFFF_70%,#F7F3FF_100%)]"
     >
-      {/* faint descending grid — indebted-style */}
+      {/* faint vertical grid — indebted-style */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.10] [background-image:linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] [background-size:112px_100%,100%_150px]"
-      />
-      {/* dark well behind the sphere so the particles glow */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 top-0 h-3/4 bg-[radial-gradient(52%_60%_at_50%_2%,rgba(15,4,40,0.7),transparent_72%)]"
+        className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(to_right,rgba(99,48,199,0.07)_1px,transparent_1px)] [background-size:112px_100%]"
       />
 
-      {/* Orbital sphere — centred, bleeding off the top */}
-      <ClientOnly fallback={null}>
-        <React.Suspense fallback={null}>
-          <OrbitalSphere className="left-1/2 top-0 aspect-square w-[112vw] max-w-[980px] -translate-x-1/2 -translate-y-[16%]" />
-        </React.Suspense>
-      </ClientOnly>
-
-      {/* Content — left aligned */}
-      <div className="relative z-10 mx-auto flex min-h-[640px] max-w-7xl flex-col justify-center px-6 pb-24 pt-40 sm:px-8 lg:min-h-[760px]">
+      <div className="relative z-10 mx-auto grid min-h-[860px] max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-24 pt-40 sm:px-8 lg:min-h-[940px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-6">
+        {/* Copy — left */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl"
         >
-          <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/65">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-light" />
+          <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-accent" />
             Meridius Management GmbH · Pfäffikon SZ
           </p>
 
           <h1
-            className="mt-6 font-bold leading-[1.02] tracking-tight text-white"
-            style={{ fontSize: "clamp(2.75rem, 2rem + 3.6vw, 4rem)" }}
+            className="mt-6 font-bold leading-[1.02] tracking-tight text-[#2B2433]"
+            style={{ fontSize: "clamp(2.75rem, 2rem + 3.6vw, 4.25rem)" }}
           >
             Klare Linie.
             <br />
-            <span className="text-brand-light">Faire Lösung.</span>
+            <span className="text-brand">Faire Lösung.</span>
           </h1>
 
-          <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-white/75 sm:text-lg">
+          <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-[#5c5468] sm:text-lg">
             Meridius Collection verbindet modernes, KI-gestütztes
             Forderungsmanagement mit einem fairen Umgang zwischen Gläubiger und
             Schuldner — schnell, digital und rechtlich sauber.
@@ -93,6 +81,24 @@ export function Hero() {
             </Button3D>
           </div>
         </motion.div>
+
+        {/* Orbital sphere — right column, fully inside the hero */}
+        <div className="relative h-[360px] w-full sm:h-[460px] lg:h-[620px]">
+          {/* soft light-well so the particles read on the bright surface */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 [background:radial-gradient(50%_50%_at_55%_50%,rgba(43,15,92,0.16),transparent_70%)]"
+          />
+          <ClientOnly fallback={null}>
+            <React.Suspense fallback={null}>
+              <OrbitalSphere
+                haloOpacity={0.32}
+                orbitOpacity={0.3}
+                className="left-1/2 top-1/2 aspect-square h-full max-h-full w-auto -translate-x-1/2 -translate-y-1/2"
+              />
+            </React.Suspense>
+          </ClientOnly>
+        </div>
       </div>
     </section>
   );

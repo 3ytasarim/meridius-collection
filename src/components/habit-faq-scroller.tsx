@@ -32,8 +32,8 @@ export function HorizontalScroller({
   className,
 }: {
   children: React.ReactNode;
-  speed?: string;
-  direction?: "left" | "right";
+  speed?: string | undefined;
+  direction?: ("left" | "right") | undefined;
   className?: string;
 }) {
   const animationClass =
@@ -72,8 +72,8 @@ type FaqSectionData = {
   rows: {
     id: string | number;
     faqItems: (FaqItem & { id?: string | number })[];
-    speed?: string;
-    direction?: "left" | "right";
+    speed?: string | undefined;
+    direction?: ("left" | "right") | undefined;
   }[];
 };
 
