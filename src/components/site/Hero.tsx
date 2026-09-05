@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from "@tanstack/react-router";
+import { useNavigate, ClientOnly } from "@tanstack/react-router";
 
 import { ArrowFillButton } from "@/components/ui/arrow-fill-button";
 import { TextGradient } from "@/components/ui/text-gradient";
