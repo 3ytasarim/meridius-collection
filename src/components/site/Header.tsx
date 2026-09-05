@@ -27,7 +27,7 @@ export function Header() {
             <Link
               key={item.url}
               to={item.url}
-              className="relative text-[1.05rem] font-medium tracking-tight text-foreground/80 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              className="relative whitespace-nowrap text-[1.05rem] font-medium tracking-tight text-foreground/80 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: item.url === "/" }}
             >
