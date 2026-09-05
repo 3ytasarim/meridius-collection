@@ -10,7 +10,8 @@ export interface ButtonWithIconProps
 }
 
 /**
- * Pill button with an arrow badge that slides from right to left on hover.
+ * Compact pill button with an arrow badge that slides on hover.
+ * Light, modern palette — hover deepens to the brand purple.
  */
 export const ButtonWithIcon = React.forwardRef<
   HTMLButtonElement,
@@ -21,10 +22,10 @@ export const ButtonWithIcon = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-6 pe-14 text-[0.95rem] font-semibold transition-all duration-500 hover:ps-14 hover:pe-6",
+        "group relative inline-flex h-9 min-w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-4 pe-10 text-[0.8rem] font-semibold tracking-tight transition-all duration-500 hover:ps-10 hover:pe-4",
         solid
-          ? "bg-primary text-primary-foreground hover:bg-primary/90"
-          : "border border-border bg-background text-primary hover:bg-accent/40",
+          ? "bg-primary/90 text-primary-foreground hover:bg-primary"
+          : "border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary",
         className,
       )}
       {...props}
@@ -34,13 +35,13 @@ export const ButtonWithIcon = React.forwardRef<
       </span>
       <span
         className={cn(
-          "absolute right-1 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45",
+          "absolute right-1 flex h-7 w-7 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-30px)] group-hover:rotate-45",
           solid
-            ? "bg-background text-primary"
+            ? "bg-primary-foreground/15 text-primary-foreground"
             : "bg-primary text-primary-foreground",
         )}
       >
-        <ArrowUpRight size={17} />
+        <ArrowUpRight size={14} />
       </span>
     </button>
   );
