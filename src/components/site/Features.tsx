@@ -33,10 +33,10 @@ export function Features() {
           <motion.article
             key={f.eyebrow}
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
             transition={{
-              duration: 0.55,
+              duration: reduceMotion ? 0 : 0.55,
               delay: i * 0.1,
               ease: [0.22, 1, 0.36, 1],
             }}
