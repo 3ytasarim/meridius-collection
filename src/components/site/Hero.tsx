@@ -55,13 +55,13 @@ export function Hero() {
             />
           </h1>
 
-          <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-[#5c5468] sm:text-lg">
+          <p className="mt-10 max-w-md text-pretty text-base leading-relaxed text-[#5c5468] sm:text-lg">
             Meridius Collection verbindet modernes, KI-gestütztes
             Forderungsmanagement mit einem fairen Umgang zwischen Gläubiger und
             Schuldner — schnell, digital und rechtlich sauber.
           </p>
 
-          <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-11 flex flex-col gap-4 sm:flex-row">
             <Button3D asChild size="lg">
               <Link to="/leistungen">
                 <TextGradient
