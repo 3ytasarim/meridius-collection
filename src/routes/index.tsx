@@ -6,6 +6,7 @@ import { Leistungen } from "@/components/site/Leistungen";
 import { Ablauf } from "@/components/site/Ablauf";
 import { CTA } from "@/components/site/CTA";
 import { Footer } from "@/components/site/Footer";
+import { TrustedBy } from "@/components/site/TrustedBy";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,6 +38,7 @@ function Index() {
           <Header />
           <Hero />
         </div>
+        <TrustedBy />
         <Features />
         <Leistungen />
         <Ablauf />
