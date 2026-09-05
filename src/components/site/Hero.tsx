@@ -75,7 +75,7 @@ export function Hero() {
             <ArrowFillButton
               btnText="Kontakt aufnehmen"
               href="/kontakt"
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
                 navigate({ to: "/kontakt" });
               }}
