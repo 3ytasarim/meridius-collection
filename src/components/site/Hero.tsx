@@ -27,7 +27,7 @@ export function Hero() {
         className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(to_right,rgba(99,48,199,0.07)_1px,transparent_1px)] [background-size:112px_100%]"
       />
 
-      <div className="relative z-10 mx-auto grid min-h-[680px] max-w-7xl grid-cols-1 items-start gap-10 px-6 pb-20 pt-[72px] sm:px-8 lg:min-h-[760px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6">
+      <div className="relative z-10 mx-auto grid min-h-[680px] max-w-7xl grid-cols-1 items-start gap-10 px-6 pb-20 pt-[128px] sm:px-8 lg:min-h-[760px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-start lg:gap-6">
         {/* Copy — left */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
