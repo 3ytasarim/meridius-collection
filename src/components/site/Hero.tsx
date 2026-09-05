@@ -1,8 +1,8 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Link, ClientOnly } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
-import { Button3D } from "@/components/ui/button-3d";
+import { ArrowFillButton } from "@/components/ui/arrow-fill-button";
 import { TextGradient } from "@/components/ui/text-gradient";
 
 // WebGL sphere is browser-only — keep `three` out of the SSR graph.
