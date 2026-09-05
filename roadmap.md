@@ -7,7 +7,7 @@
 - [x] Butonlar – 21st.dev "Liquid Button" (marka moru)
 - [x] Hero içeriği birebir referansa göre (badge, başlık, metin, CTA)
 - [x] Hero badge – 21st.dev "Animated Gradient Text"
-- [ ] Feature/USP bölümü (3 sütun)
+- [x] Feature/USP bölümü (3 sütun, kontrollü Drop Text girişi)
 - [ ] Leistungen (hizmet kartları)
 - [ ] Ablauf (01-04 süreç adımları)
 - [ ] CTA + Footer
