@@ -83,7 +83,7 @@ export function Hero() {
         </motion.div>
 
         {/* Orbital sphere — right column, fully inside the hero */}
-        <div className="relative h-[360px] w-full sm:h-[460px] lg:h-[620px]">
+        <div className="relative h-[360px] w-full sm:h-[460px] lg:h-[760px]">
           {/* soft light-well so the particles read on the bright surface */}
           <div
             aria-hidden
