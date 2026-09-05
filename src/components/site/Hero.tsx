@@ -45,7 +45,14 @@ export function Hero() {
           >
             Klare Linie.
             <br />
-            <span className="text-brand">Faire Lösung.</span>
+            <TextGradient
+              as="span"
+              children="Faire Lösung."
+              colors={["#6330C7", "#7C45E8", "#A77AF4", "#6330C7"]}
+              duration={6}
+              angle={90}
+              className="font-extrabold"
+            />
           </h1>
 
           <p className="mt-6 max-w-md text-pretty text-base leading-relaxed text-[#5c5468] sm:text-lg">
