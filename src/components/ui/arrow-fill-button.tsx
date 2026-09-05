@@ -175,7 +175,7 @@ function ArrowFillButton({
 
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 z-2 flex items-center px-[3vw] pr-[calc(var(--icon-circle)+var(--icon-right)+2vw)] text-(--btn-fill-text) [clip-path:inset(var(--circle-inset-y)_var(--icon-right)_var(--circle-inset-y)_calc(100%-var(--icon-right)-var(--icon-circle)))] max-[1025px]:px-[5vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)] max-md:px-[7vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+5vw)] ${
+        className={`pointer-events-none absolute inset-0 z-2 flex items-center px-[2.2vw] pr-[calc(var(--icon-circle)+var(--icon-right)+1.4vw)] text-(--btn-fill-text) [clip-path:inset(var(--circle-inset-y)_var(--icon-right)_var(--circle-inset-y)_calc(100%-var(--icon-right)-var(--icon-circle)))] max-[1025px]:px-[4vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+3vw)] max-md:px-[6vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)] ${
           isReady
             ? "transition-all duration-450 ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:text-(--btn-fill-text-hover) group-hover:[clip-path:inset(0_0_0_0)] group-data-[pressed=true]:text-(--btn-fill-text-hover) group-data-[pressed=true]:[clip-path:inset(0_0_0_0)]"
             : ""
