@@ -36,7 +36,7 @@ export function Hero() {
           className="max-w-xl"
         >
           <h1
-            className="mt-6 font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
+            className="font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
             style={{ fontSize: "clamp(2.75rem, 1.9rem + 3.9vw, 4.5rem)" }}
           >
             Klare Linie.
