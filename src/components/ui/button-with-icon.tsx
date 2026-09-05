@@ -16,7 +16,7 @@ export interface ButtonWithIconProps
 export const ButtonWithIcon = React.forwardRef<
   HTMLButtonElement,
   ButtonWithIconProps
-> >(({ label, variant = "solid", className, ...props }, ref) => {
+>(({ label, variant = "solid", className, ...props }, ref) => {
   const solid = variant === "solid";
   return (
     <button
