@@ -46,7 +46,7 @@ export function Hero() {
               colors={["#6330C7", "#7C45E8", "#A77AF4", "#6330C7"]}
               duration={6}
               angle={90}
-              className="font-extrabold"
+              className="font-extrabold pb-[0.12em] leading-[1.15]"
             />
           </h1>
 
