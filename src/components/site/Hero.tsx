@@ -12,7 +12,7 @@ const OrbitalSphere = React.lazy(() =>
   })),
 );
 
-const btnGradient = ["#FFFFFF", "#F4EFFF", "#A77AF4", "#FFFFFF"];
+
 
 export function Hero() {
   const navigate = useNavigate();
