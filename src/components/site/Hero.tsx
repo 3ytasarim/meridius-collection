@@ -40,8 +40,8 @@ export function Hero() {
           </p>
 
           <h1
-            className="mt-6 font-bold leading-[1.02] tracking-tight text-[#2B2433]"
-            style={{ fontSize: "clamp(2.75rem, 2rem + 3.6vw, 4.25rem)" }}
+            className="mt-6 font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
+            style={{ fontSize: "clamp(2.75rem, 1.9rem + 3.9vw, 4.5rem)" }}
           >
             Klare Linie.
             <br />
