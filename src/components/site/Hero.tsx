@@ -50,7 +50,7 @@ export function Hero() {
             />
           </h1>
 
-          <p className="mt-18 max-w-md text-pretty text-base leading-relaxed text-[#5c5468] sm:text-lg">
+          <p className="mt-18 max-w-md text-pretty text-base font-bold leading-relaxed text-[#2B2433] sm:text-lg">
             Meridius Collection verbindet modernes, KI-gestütztes
             Forderungsmanagement mit einem fairen Umgang zwischen Gläubiger und
             Schuldner — schnell, digital und rechtlich sauber.
