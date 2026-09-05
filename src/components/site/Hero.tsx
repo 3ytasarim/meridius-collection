@@ -65,11 +65,11 @@ export function Hero() {
                 e.preventDefault();
                 navigate({ to: "/leistungen" });
               }}
-              bgColor="#6330C7"
+              bgColor="#7C45E8"
               textColor="#ffffff"
-              fillBgColor="#7C45E8"
+              fillBgColor="#6330C7"
               fillTextColor="#ffffff"
-              hoverFillBgColor="#7C45E8"
+              hoverFillBgColor="#6330C7"
               hoverFillTextColor="#ffffff"
             />
             <ArrowFillButton
