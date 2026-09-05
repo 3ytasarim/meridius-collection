@@ -65,7 +65,7 @@ export function Hero() {
                 e.preventDefault();
                 navigate({ to: "/leistungen" });
               }}
-              bgColor="#7C45E8"
+              bgColor="#8B5CF0"
               textColor="#ffffff"
               fillBgColor="#6330C7"
               fillTextColor="#ffffff"
