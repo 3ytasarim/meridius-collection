@@ -32,13 +32,19 @@ const GradientText = memo(function GradientText({
   duration = 5,
   style,
 }: GradientTextProps) {
+  const Tag = Component as React.ComponentType<{
+    className?: string;
+    style?: CSSProperties;
+    children?: ReactNode;
+  }>;
+
   const stops = useMemo(
     () => colors.split(",").map((c) => c.trim()).join(", "),
     [colors],
   );
 
   return (
-    <Component
+    <Tag
       className={cn(
         "animate-gradient bg-clip-text text-transparent [--bg-size:320%] bg-[length:var(--bg-size)_100%]",
         className,
@@ -50,7 +56,7 @@ const GradientText = memo(function GradientText({
       }}
     >
       {children}
-    </Component>
+    </Tag>
   );
 });
 

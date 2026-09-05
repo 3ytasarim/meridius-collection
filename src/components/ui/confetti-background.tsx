@@ -105,8 +105,8 @@ export function ConfettiBackground({
           opacity: 1,
           shape: (["rectangle", "circle", "star", "diamond"] as const)[
             Math.floor(Math.random() * 4)
-          ],
-          color: colors[Math.floor(Math.random() * colors.length)],
+          ]!,
+          color: colors[Math.floor(Math.random() * colors.length)]!,
           floatPhase: Math.random() * Math.PI * 2,
           swayAmplitude: Math.random() * 0.5 + 0.2,
           bobAmplitude: Math.random() * 0.3 + 0.1,

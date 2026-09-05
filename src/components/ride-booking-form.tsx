@@ -12,7 +12,8 @@ import { GradientText } from "@/components/ui/gradient-text-fill";
  * `ravikatiyar162/ride-booking-form`): a soft white card holding copy + address
  * on the left and an embedded map on the right.
  */
-interface LocationMapPanelProps extends React.HTMLAttributes<HTMLDivElement> {
+interface LocationMapPanelProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   /** Google Maps embed URL used as the iframe `src`. */
   mapEmbedUrl: string;
   /** Google Maps link opened by the "Route planen" button. */

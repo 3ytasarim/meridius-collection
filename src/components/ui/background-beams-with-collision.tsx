@@ -58,17 +58,17 @@ export const BackgroundBeamsWithCollision = ({
 const CollisionMechanism = React.forwardRef<
   HTMLDivElement,
   {
-    containerRef: React.RefObject<HTMLDivElement>;
-    parentRef: React.RefObject<HTMLDivElement>;
+    containerRef: React.RefObject<HTMLDivElement | null>;
+    parentRef: React.RefObject<HTMLDivElement | null>;
     beamOptions?: {
-      x?: string;
-      initialY?: string;
-      translateY?: string;
-      rotate?: number;
-      className?: string;
-      duration?: number;
-      delay?: number;
-      repeatDelay?: number;
+      x?: string | undefined;
+      initialY?: string | undefined;
+      translateY?: string | undefined;
+      rotate?: number | undefined;
+      className?: string | undefined;
+      duration?: number | undefined;
+      delay?: number | undefined;
+      repeatDelay?: number | undefined;
     };
   }
 >(({ parentRef, containerRef, beamOptions = {} }, ref) => {
