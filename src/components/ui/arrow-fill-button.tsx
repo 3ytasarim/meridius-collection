@@ -197,7 +197,7 @@ function ArrowFillButton({
         aria-hidden="true"
       >
           <ArrowRight
-            className={`absolute left-1/2 top-1/2 size-[1.5vw] max-[1025px]:size-[4vw] max-md:size-[5vw] translate-x-[-170%] -translate-y-1/2 origin-center scale-0 text-current ${
+            className={`absolute left-1/2 top-1/2 size-[1.1vw] max-[1025px]:size-[3vw] max-md:size-[4vw] translate-x-[-170%] -translate-y-1/2 origin-center scale-0 text-current ${
               isReady
                 ? "transition-transform duration-450 ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:scale-100 group-data-[pressed=true]:-translate-x-1/2 group-data-[pressed=true]:-translate-y-1/2 group-data-[pressed=true]:scale-100"
                 : ""
@@ -206,7 +206,7 @@ function ArrowFillButton({
           />
 
           <ArrowRight
-            className={`absolute left-1/2 top-1/2 size-[1.5vw] max-[1025px]:size-[4vw] max-md:size-[5vw] -translate-x-1/2 -translate-y-1/2 origin-center text-current ${
+            className={`absolute left-1/2 top-1/2 size-[1.1vw] max-[1025px]:size-[3vw] max-md:size-[4vw] -translate-x-1/2 -translate-y-1/2 origin-center text-current ${
               isReady
                 ? "transition-transform duration-[450ms] ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:translate-x-[70%] group-hover:-translate-y-1/2 group-hover:scale-0 group-data-[pressed=true]:translate-x-[70%] group-data-[pressed=true]:-translate-y-1/2 group-data-[pressed=true]:scale-0"
                 : ""
