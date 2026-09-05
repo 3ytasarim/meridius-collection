@@ -1,69 +1,38 @@
 import { LogoMarquee, type Logo } from "@/components/ui/logo-marquee";
 
-// Reputable Swiss / DACH finance & legal brand marks rendered as wordmarks.
-// Using inline SVG wordmarks avoids external asset loading and stays crisp.
-const swissChamber = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='160' height='28' viewBox='0 0 160 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>Schweizer Kammer</text></svg>`,
-  );
-const treuhand = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='140' height='28' viewBox='0 0 140 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>TREUHAND·SZ</text></svg>`,
-  );
-const fiducia = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>Fiducia Recht</text></svg>`,
-  );
-const helvetia = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='120' height='28' viewBox='0 0 120 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>HELVETIA</text></svg>`,
-  );
-const zugerBund = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>Zuger Bund</text></svg>`,
-  );
-const alpineTrust = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>Alpine Trust</text></svg>`,
-  );
-const rwBank = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='130' height='28' viewBox='0 0 130 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>RW Bank</text></svg>`,
-  );
-const pfaffikonZ = "data:image/svg+xml;utf8," +
-  encodeURIComponent(
-    `<svg xmlns='http://www.w3.org/2000/svg' width='150' height='28' viewBox='0 0 150 28'><text x='0' y='22' font-family='Manrope,Inter,sans-serif' font-size='22' font-weight='700' fill='#2B2433'>Pfäffikon·SZ</text></svg>`,
-  );
-
+// Original demo logos from the 21st.dev component source.
 const logos: Logo[] = [
-  { src: swissChamber, alt: "Schweizer Kammer" },
-  { src: treuhand, alt: "Treuhand SZ" },
-  { src: fiducia, alt: "Fiducia Recht" },
-  { src: helvetia, alt: "Helvetia" },
-  { src: zugerBund, alt: "Zuger Bund" },
-  { src: alpineTrust, alt: "Alpine Trust" },
-  { src: rwBank, alt: "RW Bank" },
-  { src: pfaffikonZ, alt: "Pfäffikon SZ" },
+  { src: "https://cdn.21st.dev/assets/mirror/bd/bdf5f3ae72bcfda892a686c03b7932985c694e9a9828643c980601bbc9e53cb4.svg", alt: "Nvidia" },
+  { src: "https://cdn.21st.dev/assets/mirror/31/319eeae853dd1af99d442b6c16b6c38dc52a66a719f8e502c65f85d26255cbd3.svg", alt: "Supabase" },
+  { src: "https://cdn.21st.dev/assets/mirror/2b/2bcdd4124223e3bf8e66bc08ce0ac32a6cc42ffe3584bbecfd377847176a188d.svg", alt: "OpenAI" },
+  { src: "https://cdn.21st.dev/assets/mirror/56/5624b7c243ac8d60e848fb5ea222ec932c1600df54a2762238b37498372fb0c8.svg", alt: "Vercel" },
+  { src: "https://cdn.21st.dev/assets/mirror/90/90f01a9537335666282ae5acc80bd4305f86d085a92d60904c3aa3ccc4414570.svg", alt: "GitHub" },
+  { src: "https://cdn.21st.dev/assets/mirror/96/96517bce3574d648280ff639d01d9889f354b488b3f826db5df746d730232a0c.svg", alt: "Clerk" },
+  { src: "https://cdn.21st.dev/assets/mirror/fc/fc7b090ebcfc468d24a1dc482b2db1fcbfd99ca14568552a30ce553d6dda7fcb.svg", alt: "Turso" },
+  { src: "https://cdn.21st.dev/assets/mirror/e8/e8514b1206f79e1abdafcc1d2632393cc7cfbcbbe25426ac5143b17b184b56b8.svg", alt: "Claude" },
 ];
 
 export function TrustedBy() {
   return (
     <section className="relative w-full bg-white">
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="flex flex-col items-center justify-center pt-16 pb-2 text-center">
-          <h2 className="font-extrabold leading-tight tracking-[-0.02em] text-[#2B2433]"
-            style={{ fontSize: "clamp(1.25rem, 1rem + 0.9vw, 1.75rem)" }}>
+        <div className="flex flex-col items-stretch gap-3 py-16 sm:flex-row sm:items-center sm:gap-8">
+          {/* Heading — left aligned, marquee starts right after it */}
+          <h2
+            className="shrink-0 font-extrabold leading-[1.05] tracking-[-0.02em] text-[#2B2433] sm:w-max"
+            style={{ fontSize: "clamp(1.35rem, 1.05rem + 1.1vw, 2rem)" }}
+          >
             Vertrauen führender
             <br />
             Unternehmen
           </h2>
-        </div>
 
-        {/* Marquee fades in at the start and out at the end via the mask gradient. */}
-        <LogoMarquee
-          logos={logos}
-          className="pt-2 pb-16 mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
-        />
+          {/* Marquee fills the rest of the row; fades in/out at the edges */}
+          <LogoMarquee
+            logos={logos}
+            className="flex-1 py-2 mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
+          />
+        </div>
       </div>
     </section>
   );
