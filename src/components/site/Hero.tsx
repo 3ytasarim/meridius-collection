@@ -62,6 +62,9 @@ export function Hero() {
               btnText="Leistungen entdecken"
               href="/leistungen"
               onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                navigate({ to: "/leistungen" });
+              }}
               bgColor="#6330C7"
               textColor="#ffffff"
               fillBgColor="#7C45E8"
