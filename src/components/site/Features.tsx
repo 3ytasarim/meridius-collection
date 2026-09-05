@@ -1,5 +1,6 @@
-import { FeatureCard } from "@/components/ui/binaural-glow-feature-card";
-import { FloatingIcons } from "@/components/site/FloatingIcons";
+import { motion, useReducedMotion } from "framer-motion";
+
+import { DropText } from "@/components/ui/drop-text";
 
 const features = [
   {
@@ -23,12 +24,31 @@ const features = [
 ];
 
 export function Features() {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="relative isolate overflow-hidden bg-background py-20 sm:py-28">
-      <FloatingIcons />
-      <div className="relative mx-auto grid max-w-7xl gap-6 px-6 md:grid-cols-3">
+    <section className="bg-background py-20 sm:py-28 lg:py-32">
+      <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-16 px-6 sm:px-8 md:grid-cols-3 lg:gap-x-16">
         {features.map((f, i) => (
-          <FeatureCard key={f.eyebrow} attentionDelay={i * 1.2} {...f} />
+          <motion.article
+            key={f.eyebrow}
+            initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+            whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{
+              duration: 0.55,
+              delay: i * 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+          >
+            <p className="mb-5 text-xs font-bold uppercase text-primary">{f.eyebrow}</p>
+            <h2 className="max-w-[18ch] text-[clamp(1.75rem,2.2vw,2.45rem)] font-extrabold leading-[1.12] text-foreground">
+              <DropText delay={i * 0.1 + 0.04}>{f.title}</DropText>
+            </h2>
+            <p className="mt-7 max-w-[37ch] text-base leading-7 text-muted-foreground sm:text-[1.0625rem]">
+              {f.paragraph}
+            </p>
+          </motion.article>
         ))}
       </div>
     </section>
