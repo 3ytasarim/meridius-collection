@@ -30,33 +30,45 @@ export function DropText({
   distance = 28,
 }: DropTextProps) {
   const reduceMotion = useReducedMotion();
-  const chars = React.useMemo(() => Array.from(children), [children]);
+  const words = React.useMemo(() => children.split(" "), [children]);
+
+  let charIndex = -1;
 
   return (
-    <span className={cn("inline-block", className)}>
+    <span className={cn("inline", className)}>
       <span className="sr-only">{children}</span>
       <span aria-hidden="true">
-        {chars.map((char, i) => (
-          <motion.span
-            key={`${char}-${i}`}
-            className="inline-block whitespace-pre will-change-transform"
-            initial={reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -distance }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={
-              reduceMotion
-                ? { duration: 0 }
-                : {
-                    type: "spring",
-                    stiffness: 420,
-                    damping: 18,
-                    mass: 0.7,
-                    delay: delay + i * stagger,
+        {words.map((word, w) => (
+          <span key={`${word}-${w}`} className="inline-block whitespace-pre">
+            {Array.from(w < words.length - 1 ? `${word} ` : word).map((char, i) => {
+              charIndex += 1;
+              const index = charIndex;
+              return (
+                <motion.span
+                  key={`${char}-${i}`}
+                  className="inline-block whitespace-pre will-change-transform"
+                  initial={
+                    reduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -distance }
                   }
-            }
-          >
-            {char === " " ? "\u00A0" : char}
-          </motion.span>
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={
+                    reduceMotion
+                      ? { duration: 0 }
+                      : {
+                          type: "spring",
+                          stiffness: 420,
+                          damping: 18,
+                          mass: 0.7,
+                          delay: delay + index * stagger,
+                        }
+                  }
+                >
+                  {char}
+                </motion.span>
+              );
+            })}
+          </span>
         ))}
       </span>
     </span>
