@@ -1,8 +1,8 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Link, ClientOnly } from "@tanstack/react-router";
+import { useNavigate, ClientOnly } from "@tanstack/react-router";
 
-import { Button3D } from "@/components/ui/button-3d";
+import ArrowFillButton from "@/components/ui/arrow-fill-button";
 import { TextGradient } from "@/components/ui/text-gradient";
 
 // WebGL sphere is browser-only — keep `three` out of the SSR graph.
@@ -12,9 +12,10 @@ const OrbitalSphere = React.lazy(() =>
   })),
 );
 
-const btnGradient = ["#FFFFFF", "#F4EFFF", "#A77AF4", "#FFFFFF"];
+
 
 export function Hero() {
+  const navigate = useNavigate();
   return (
     <section
       id="hero"
@@ -57,30 +58,34 @@ export function Hero() {
           </p>
 
           <div className="mt-11 flex flex-col gap-4 sm:flex-row">
-            <Button3D asChild size="lg">
-              <Link to="/leistungen">
-                <TextGradient
-                  children="Leistungen entdecken"
-                  as="span"
-                  colors={btnGradient}
-                  duration={5}
-                  angle={135}
-                  className="font-semibold"
-                />
-              </Link>
-            </Button3D>
-            <Button3D asChild variant="outline" size="lg">
-              <Link to="/kontakt">
-                <TextGradient
-                  children="Kontakt aufnehmen"
-                  as="span"
-                  colors={btnGradient}
-                  duration={5}
-                  angle={135}
-                  className="font-semibold"
-                />
-              </Link>
-            </Button3D>
+            <ArrowFillButton
+              btnText="Leistungen entdecken"
+              href="/leistungen"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                navigate({ to: "/leistungen" });
+              }}
+              bgColor="#6330C7"
+              textColor="#ffffff"
+              fillBgColor="#7C45E8"
+              fillTextColor="#ffffff"
+              hoverFillBgColor="#7C45E8"
+              hoverFillTextColor="#ffffff"
+            />
+            <ArrowFillButton
+              btnText="Kontakt aufnehmen"
+              href="/kontakt"
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+                e.preventDefault();
+                navigate({ to: "/kontakt" });
+              }}
+              bgColor="#ffffff"
+              textColor="#6330C7"
+              fillBgColor="#6330C7"
+              fillTextColor="#ffffff"
+              hoverFillBgColor="#6330C7"
+              hoverFillTextColor="#ffffff"
+            />
           </div>
         </motion.div>
 
