@@ -22,12 +22,12 @@ export function Header() {
         <MeridiusLogo />
 
         {/* Plain text nav, left aligned next to the logo (indebted.co style) */}
-        <nav className="hidden items-center gap-8 xl:flex">
+        <nav className="hidden items-center gap-9 xl:flex">
           {navItems.map((item) => (
             <Link
               key={item.url}
               to={item.url}
-              className="relative text-[0.95rem] font-medium text-foreground/80 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              className="relative text-[1.05rem] font-medium tracking-tight text-foreground/80 transition-colors hover:text-primary after:absolute after:-bottom-1.5 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
               activeProps={{ className: "text-primary" }}
               activeOptions={{ exact: item.url === "/" }}
             >
