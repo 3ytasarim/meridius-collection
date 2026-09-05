@@ -61,10 +61,7 @@ export function Hero() {
             <ArrowFillButton
               btnText="Leistungen entdecken"
               href="/leistungen"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate({ to: "/leistungen" });
-              }}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
               bgColor="#6330C7"
               textColor="#ffffff"
               fillBgColor="#7C45E8"
