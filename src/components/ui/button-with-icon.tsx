@@ -34,13 +34,13 @@ export const ButtonWithIcon = React.forwardRef<
       </span>
       <span
         className={cn(
-          "absolute right-1 flex h-9 w-9 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-40px)] group-hover:rotate-45",
+          "absolute right-1 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45",
           solid
             ? "bg-background text-primary"
             : "bg-primary text-primary-foreground",
         )}
       >
-        <ArrowUpRight size={16} />
+        <ArrowUpRight size={17} />
       </span>
     </button>
   );
