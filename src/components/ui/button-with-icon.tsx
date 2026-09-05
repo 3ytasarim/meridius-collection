@@ -22,7 +22,7 @@ export const ButtonWithIcon = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative inline-flex h-9 min-w-[150px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-4 pe-10 text-[0.8rem] font-semibold tracking-tight transition-all duration-500 hover:ps-10 hover:pe-4",
+        "group relative inline-flex h-9 min-w-[170px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-4 pe-10 text-[0.8rem] font-semibold tracking-tight transition-all duration-500 hover:ps-10 hover:pe-4",
         solid
           ? "bg-primary/90 text-primary-foreground hover:bg-primary"
           : "border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary",
