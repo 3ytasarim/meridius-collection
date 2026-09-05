@@ -34,11 +34,6 @@ export function Hero() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-xl"
         >
-          <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-brand">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand-accent" />
-            Meridius Management GmbH · Pfäffikon SZ
-          </p>
-
           <h1
             className="mt-6 font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
             style={{ fontSize: "clamp(2.75rem, 1.9rem + 3.9vw, 4.5rem)" }}
