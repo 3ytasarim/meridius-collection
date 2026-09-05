@@ -21,7 +21,7 @@ export const ButtonWithIcon = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative inline-flex h-11 w-fit cursor-pointer items-center overflow-hidden rounded-full p-1 ps-5 pe-12 text-sm font-semibold transition-all duration-500 hover:ps-12 hover:pe-5",
+        "group relative inline-flex h-12 min-w-[220px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-6 pe-14 text-[0.95rem] font-semibold transition-all duration-500 hover:ps-14 hover:pe-6",
         solid
           ? "bg-primary text-primary-foreground hover:bg-primary/90"
           : "border border-border bg-background text-primary hover:bg-accent/40",
@@ -34,13 +34,13 @@ export const ButtonWithIcon = React.forwardRef<
       </span>
       <span
         className={cn(
-          "absolute right-1 flex h-9 w-9 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-40px)] group-hover:rotate-45",
+          "absolute right-1 flex h-10 w-10 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-44px)] group-hover:rotate-45",
           solid
             ? "bg-background text-primary"
             : "bg-primary text-primary-foreground",
         )}
       >
-        <ArrowUpRight size={16} />
+        <ArrowUpRight size={17} />
       </span>
     </button>
   );
