@@ -58,30 +58,34 @@ export function Hero() {
           </p>
 
           <div className="mt-11 flex flex-col gap-4 sm:flex-row">
-            <Button3D asChild size="lg">
-              <Link to="/leistungen">
-                <TextGradient
-                  children="Leistungen entdecken"
-                  as="span"
-                  colors={btnGradient}
-                  duration={5}
-                  angle={135}
-                  className="font-semibold"
-                />
-              </Link>
-            </Button3D>
-            <Button3D asChild variant="outline" size="lg">
-              <Link to="/kontakt">
-                <TextGradient
-                  children="Kontakt aufnehmen"
-                  as="span"
-                  colors={btnGradient}
-                  duration={5}
-                  angle={135}
-                  className="font-semibold"
-                />
-              </Link>
-            </Button3D>
+            <ArrowFillButton
+              btnText="Leistungen entdecken"
+              href="/leistungen"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate({ to: "/leistungen" });
+              }}
+              bgColor="#6330C7"
+              textColor="#ffffff"
+              fillBgColor="#7C45E8"
+              fillTextColor="#ffffff"
+              hoverFillBgColor="#7C45E8"
+              hoverFillTextColor="#ffffff"
+            />
+            <ArrowFillButton
+              btnText="Kontakt aufnehmen"
+              href="/kontakt"
+              onClick={(e) => {
+                e.preventDefault();
+                navigate({ to: "/kontakt" });
+              }}
+              bgColor="#ffffff"
+              textColor="#6330C7"
+              fillBgColor="#6330C7"
+              fillTextColor="#ffffff"
+              hoverFillBgColor="#6330C7"
+              hoverFillTextColor="#ffffff"
+            />
           </div>
         </motion.div>
 
