@@ -1,13 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { Link, useRouterState } from "@tanstack/react-router";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+/** Internal routes the navbar can point to. */
+export type NavHref = "/" | "/leistungen" | "/uber-uns" | "/kontakt" | "/zahlung";
+
 export interface TubelightNavItem {
   name: string;
-  url: string;
+  url: NavHref;
   icon: LucideIcon;
 }
 
@@ -18,28 +21,26 @@ export function NavBar({
   items: TubelightNavItem[];
   className?: string;
 }) {
-  const [activeTab, setActiveTab] = useState(items[0]?.name ?? "");
-  const [isMobile, setIsMobile] = useState(false);
+  const pathname = useRouterState({
+    select: (s) => s.location.pathname,
+  });
 
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  const activeName =
+    items.find((item) =>
+      item.url === "/" ? pathname === "/" : pathname.startsWith(item.url),
+    )?.name ?? "";
 
   return (
     <div className={cn("z-50", className)}>
       <div className="flex items-center gap-1 rounded-full border border-brand/10 bg-white px-1 py-1 shadow-[0_18px_50px_-28px_rgba(99,48,199,0.35)]">
         {items.map((item) => {
           const Icon = item.icon;
-          const isActive = activeTab === item.name;
+          const isActive = activeName === item.name;
 
           return (
-            <a
+            <Link
               key={item.name}
-              href={item.url}
-              onClick={() => setActiveTab(item.name)}
+              to={item.url}
               className={cn(
                 "relative cursor-pointer whitespace-nowrap rounded-full px-5 py-2 text-[14px] font-semibold transition-colors",
                 "text-[var(--text-muted)] hover:text-[var(--brand)]",
@@ -64,11 +65,10 @@ export function NavBar({
                   </div>
                 </motion.div>
               )}
-            </a>
+            </Link>
           );
         })}
       </div>
-      {isMobile ? null : null}
     </div>
   );
 }

@@ -32,7 +32,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <div className="min-h-screen bg-background">
-      <main id="home">
+      <main id="start">
         <div className="relative">
           <Header />
           <Hero />

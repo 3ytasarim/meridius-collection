@@ -3,9 +3,9 @@ import { Link } from "@tanstack/react-router";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { Button3D } from "@/components/ui/button-3d";
 
-export function CTA() {
+export function ZahlungCta() {
   return (
-    <section id="cta" className="relative bg-white py-16 sm:py-20">
+    <section className="relative bg-transparent py-16 sm:py-20">
       <div className="mx-auto max-w-6xl px-6">
         <div className="relative isolate overflow-hidden rounded-[2rem] bg-brand-dark px-8 py-12 sm:px-12 sm:py-14">
           {/* subtle brand glow */}
@@ -29,7 +29,7 @@ export function CTA() {
           <div className="relative flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
               <AnimatedText
-                text="Offene Forderung?"
+                text="Fragen bleiben offen?"
                 fontSize="clamp(1.5rem, 1rem + 2vw, 2.6rem)"
                 minWeight={300}
                 maxWeight={800}
@@ -37,23 +37,14 @@ export function CTA() {
                 delayMultiplier={0.18}
                 className="tracking-tight text-white"
               />
-              <AnimatedText
-                text="Lassen Sie uns das klären."
-                fontSize="clamp(1.5rem, 1rem + 2vw, 2.6rem)"
-                minWeight={300}
-                maxWeight={800}
-                animationDuration={2}
-                delayMultiplier={0.18}
-                className="mt-1 tracking-tight text-white"
-              />
             </div>
 
             <div className="flex flex-wrap items-center gap-4">
               <Button3D variant="primary" size="md" asChild>
-                <Link to="/kontakt">Fall einreichen</Link>
+                <Link to="/kontakt">Chat-Assistent öffnen</Link>
               </Button3D>
               <Button3D variant="outline" size="md" asChild>
-                <Link to="/leistungen">Mehr zu den Leistungen</Link>
+                <Link to="/kontakt">Team kontaktieren</Link>
               </Button3D>
             </div>
           </div>

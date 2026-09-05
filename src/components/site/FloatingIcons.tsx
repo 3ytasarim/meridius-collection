@@ -1,11 +1,11 @@
-import agile from "@/assets/agile.png.asset.json";
-import ai from "@/assets/artificial-intelligence.png.asset.json";
-import brain from "@/assets/brain-power.png.asset.json";
-import meeting from "@/assets/business-meeting.png.asset.json";
-import fairPlay from "@/assets/fair-play.png.asset.json";
-import objective from "@/assets/objective.png.asset.json";
+import agile from "@/assets/agile.png";
+import ai from "@/assets/artificial-intelligence.png";
+import brain from "@/assets/brain-power.png";
+import meeting from "@/assets/business-meeting.png";
+import fairPlay from "@/assets/fair-play.png";
+import objective from "@/assets/objective.png";
 
-const ICONS = [agile, ai, brain, meeting, fairPlay, objective].map((a) => a.url);
+const ICONS = [agile, ai, brain, meeting, fairPlay, objective];
 
 type Item = {
   url: string;

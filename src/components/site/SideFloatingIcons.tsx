@@ -1,13 +1,11 @@
-import withdraw from "@/assets/withdraw.png.asset.json";
-import data1 from "@/assets/data_1.png.asset.json";
-import data from "@/assets/data.png.asset.json";
-import giveMoney from "@/assets/give-money.png.asset.json";
-import agile from "@/assets/agile.png.asset.json";
-import objective from "@/assets/objective.png.asset.json";
+import withdraw from "@/assets/withdraw.png";
+import data1 from "@/assets/data_1.png";
+import data from "@/assets/data.png";
+import giveMoney from "@/assets/give-money.png";
+import agile from "@/assets/agile.png";
+import objective from "@/assets/objective.png";
 
-const ICONS = [withdraw, data1, data, giveMoney, agile, objective].map(
-  (a) => a.url,
-);
+const ICONS = [withdraw, data1, data, giveMoney, agile, objective];
 
 type Item = {
   url: string;

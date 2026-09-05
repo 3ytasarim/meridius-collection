@@ -1,20 +1,19 @@
 import { Mail, Phone, MapPin } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 const marqueeItems = Array.from({ length: 10 });
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Leistungen", href: "#leistungen" },
-  { label: "Über uns", href: "#ueber-uns" },
-  { label: "Kontakt", href: "#kontakt" },
-  { label: "Zahlung erhalten?", href: "#zahlung" },
-];
+  { label: "Start", href: "/" },
+  { label: "Leistungen", href: "/leistungen" },
+  { label: "Über uns", href: "/uber-uns" },
+  { label: "Kontakt", href: "/kontakt" },
+  { label: "Zahlung erhalten?", href: "/zahlung" },
+] as const;
 
-const leistungen = [
-  "B2B & B2C Inkasso",
-  "Mahnwesen",
-  "KI-Forderungsmanagement",
-  "Massenforderungen",
+const rechtliches = [
+  { label: "Datenschutz", href: "#" },
+  { label: "Impressum", href: "#" },
 ];
 
 export function Footer() {
@@ -34,14 +33,26 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1400px] px-6 py-14 sm:px-10">
+      {/* same inset as the header so the footer logo lines up with the header logo */}
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-8">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Marka */}
           <div>
-            <div className="flex items-center gap-3">
-              <span className="block h-6 w-6 rounded-full bg-[#2b2738]" aria-hidden="true" />
-              <span className="text-[17px] font-bold text-white">Meridius Collection</span>
-            </div>
+            {/* Asset has ~42% transparent padding top & bottom — crop it so the
+                mark reads large and the text below can hug it. */}
+            <Link
+              to="/"
+              aria-label="Meridius Collection"
+              className="block h-9 w-full max-w-[300px] overflow-hidden sm:h-10"
+            >
+              <img
+                src="/meridius-footer-logo.png"
+                alt="Meridius Collection"
+                width={1761}
+                height={893}
+                className="h-full w-full object-cover object-center"
+              />
+            </Link>
             <p className="mt-5 max-w-[280px] text-[14px] leading-relaxed text-white/60">
               Modernes, KI-gestütztes Forderungsmanagement der Meridius Management GmbH
               mit Sitz in Pfäffikon SZ, Schweiz.
@@ -56,26 +67,28 @@ export function Footer() {
             <ul className="mt-5 space-y-3">
               {navLinks.map((l) => (
                 <li key={l.label}>
+                  <Link
+                    to={l.href}
+                    className="text-[14px] text-white/75 transition-colors hover:text-white"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Rechtliches */}
+          <div>
+            <ul className="space-y-3">
+              {rechtliches.map((l) => (
+                <li key={l.label}>
                   <a
                     href={l.href}
                     className="text-[14px] text-white/75 transition-colors hover:text-white"
                   >
                     {l.label}
                   </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Leistungen */}
-          <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/50">
-              Leistungen
-            </h3>
-            <ul className="mt-5 space-y-3">
-              {leistungen.map((l) => (
-                <li key={l} className="text-[14px] text-white/75">
-                  {l}
                 </li>
               ))}
             </ul>

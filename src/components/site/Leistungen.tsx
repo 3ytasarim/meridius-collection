@@ -3,7 +3,6 @@ import { Layers, ShieldCheck, Sparkles, LayoutGrid } from "lucide-react";
 import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
 import { AnimatedText } from "@/components/ui/animated-text";
 import { Card3DList, type CardData } from "@/components/ui/animated-3d-card";
-import { CrystalTrailBackground } from "@/components/ui/crystal-trail-background";
 
 const cards: CardData[] = [
   {
@@ -59,8 +58,6 @@ export function Leistungen() {
             "radial-gradient(70% 50% at 50% 0%, color-mix(in oklab, var(--brand-soft) 60%, transparent) 0%, transparent 70%)",
         }}
       />
-
-      <CrystalTrailBackground color="124, 69, 232" />
 
       {/* Centered header */}
       <div className="relative mx-auto mb-14 max-w-3xl px-6 text-center">

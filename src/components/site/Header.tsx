@@ -1,42 +1,72 @@
-import { Home, Briefcase, Users, Mail, CreditCard } from "lucide-react";
+import { Home, Briefcase, Users, Mail } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import { NavBar, type TubelightNavItem } from "@/components/ui/tubelight-navbar";
-import { BrandMark } from "@/components/ui/navbar-1";
+import { Button3D } from "@/components/ui/button-3d";
+import { TextGradient } from "@/components/ui/text-gradient";
+import { MeridiusLogo } from "@/components/site/MeridiusLogo";
+import { MobileNav } from "@/components/site/MobileNav";
 
 const navItems: TubelightNavItem[] = [
-  { name: "Home", url: "#home", icon: Home },
-  { name: "Leistungen", url: "#leistungen", icon: Briefcase },
-  { name: "Über uns", url: "#ueber-uns", icon: Users },
-  { name: "Kontakt", url: "#kontakt", icon: Mail },
-  { name: "Zahlung erhalten?", url: "#zahlung", icon: CreditCard },
+  { name: "Start", url: "/", icon: Home },
+  { name: "Leistungen", url: "/leistungen", icon: Briefcase },
+  { name: "Über uns", url: "/uber-uns", icon: Users },
+  { name: "Kontakt", url: "/kontakt", icon: Mail },
 ];
+
+const ctaGradient = ["#FFFFFF", "#F4EFFF", "#A77AF4", "#FFFFFF"];
 
 export function Header() {
   return (
-    <header className="absolute inset-x-0 top-0 z-50 border-b border-brand/10 bg-white/90 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-8">
-        {/* Logo */}
-        <a href="#home" className="flex shrink-0 items-center gap-2.5">
-          <BrandMark size={26} />
-          <span className="whitespace-nowrap text-[19px] font-extrabold leading-none tracking-[-0.01em] sm:text-[22px]">
-            <span className="bg-[linear-gradient(100deg,var(--brand-light),var(--brand-accent)_55%,var(--brand-light))] bg-clip-text text-transparent">
-              MERIDIUS
-            </span>
-            <span className="ml-1.5 bg-[linear-gradient(100deg,var(--brand-accent),var(--brand-light))] bg-clip-text font-light tracking-[0.06em] text-transparent">
-              COLLECTION
-            </span>
-          </span>
-        </a>
+    <header className="absolute inset-x-0 top-0 z-50 border-b border-brand/10 bg-[#EDE6FB]/85 backdrop-blur-xl">
+      <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-8">
+        {/* Logo — left */}
+        <MeridiusLogo />
 
-        {/* Tubelight nav */}
-        <NavBar items={navItems} />
+        {/* Nav — centred on the page, aligned with the hero badge */}
+        <NavBar
+          items={navItems}
+          className="absolute left-1/2 hidden -translate-x-1/2 xl:block"
+        />
 
-        {/* CTA */}
-        <a
-          href="#fall-einreichen"
-          className="hidden shrink-0 items-center justify-center rounded-full bg-brand-accent px-5 py-2.5 text-[14px] font-semibold text-white shadow-[0_10px_28px_-10px_var(--brand)] transition-colors hover:bg-brand lg:inline-flex"
-        >
-          Fall einreichen
-        </a>
+        {/* CTAs — right (desktop only) */}
+        <div className="hidden items-center gap-2.5 xl:flex">
+          <Button3D
+            asChild
+            size="sm"
+            variant="outline"
+            className="animate-btn-nudge hover:[animation-play-state:paused]"
+          >
+            <Link to="/zahlung">
+              <TextGradient
+                children="Zahlung erhalten?"
+                as="span"
+                colors={ctaGradient}
+                duration={5}
+                angle={135}
+                className="font-semibold"
+              />
+            </Link>
+          </Button3D>
+          <Button3D
+            asChild
+            size="sm"
+            className="animate-btn-nudge [animation-delay:2.25s] hover:[animation-play-state:paused]"
+          >
+            <Link to="/kontakt">
+              <TextGradient
+                children="Fall einreichen"
+                as="span"
+                colors={ctaGradient}
+                duration={5}
+                angle={135}
+                className="font-semibold"
+              />
+            </Link>
+          </Button3D>
+        </div>
+
+        {/* Mobile / tablet drawer */}
+        <MobileNav items={navItems} />
       </div>
     </header>
   );
