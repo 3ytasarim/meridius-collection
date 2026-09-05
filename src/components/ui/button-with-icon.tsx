@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,8 +10,8 @@ export interface ButtonWithIconProps
 }
 
 /**
- * Compact pill button with an arrow badge that slides on hover.
- * Light, modern palette — hover deepens to the brand purple.
+ * Compact pill button with a circular arrow badge that slides on hover.
+ * Matches the Meridius reference: solid purple / white, horizontal arrow.
  */
 export const ButtonWithIcon = React.forwardRef<
   HTMLButtonElement,
@@ -22,10 +22,10 @@ export const ButtonWithIcon = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "group relative inline-flex h-9 min-w-[170px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-4 pe-10 text-[0.8rem] font-semibold tracking-tight transition-all duration-500 hover:ps-10 hover:pe-4",
+        "group relative inline-flex h-9 min-w-[170px] cursor-pointer items-center justify-center overflow-hidden rounded-full p-1 ps-4 pe-9 text-[0.8rem] font-bold tracking-tight transition-all duration-500 hover:ps-9 hover:pe-4",
         solid
-          ? "bg-primary/90 text-primary-foreground hover:bg-primary"
-          : "border border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:border-primary",
+          ? "bg-primary text-primary-foreground"
+          : "bg-white text-primary ring-1 ring-primary/25 hover:bg-primary hover:text-primary-foreground hover:ring-primary",
         className,
       )}
       {...props}
@@ -35,13 +35,13 @@ export const ButtonWithIcon = React.forwardRef<
       </span>
       <span
         className={cn(
-          "absolute right-1 flex h-7 w-7 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-30px)] group-hover:rotate-45",
+          "absolute right-1 flex h-7 w-7 items-center justify-center rounded-full transition-all duration-500 group-hover:right-[calc(100%-30px)]",
           solid
-            ? "bg-primary-foreground/15 text-primary-foreground"
-            : "bg-primary text-primary-foreground",
+            ? "bg-primary-foreground/20 text-primary-foreground"
+            : "bg-primary text-primary-foreground group-hover:bg-primary-foreground/20 group-hover:text-primary-foreground",
         )}
       >
-        <ArrowUpRight size={14} />
+        <ArrowRight size={15} strokeWidth={2.5} />
       </span>
     </button>
   );
