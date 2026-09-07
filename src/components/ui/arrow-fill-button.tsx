@@ -10,6 +10,8 @@ const ANIMATION_DURATION_MS = 450;
 export interface ArrowFillButtonOwnProps {
   btnText?: string;
   href?: string;
+  /** `"default"` scales with the viewport (hero use); `"sm"` is a fixed compact size. */
+  size?: "default" | "sm";
   className?: string;
   bgColor?: string;
   textColor?: string;
@@ -25,9 +27,27 @@ export interface ArrowFillButtonOwnProps {
 
 export type ArrowFillButtonProps = ArrowFillButtonOwnProps & Omit<ComponentPropsWithoutRef<'a'>, keyof ArrowFillButtonOwnProps>;
 
+const METRICS = {
+  default:
+    "h-[3vw] px-[2.2vw] pr-[calc(var(--icon-circle)+var(--icon-right)+1.4vw)] text-[0.95vw] [--icon-circle:2.1vw] [--icon-right:0.45vw] max-[1025px]:h-[9vw] max-[1025px]:px-[4vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+3vw)] max-[1025px]:text-[2.6vw] max-[1025px]:[--icon-circle:6vw] max-[1025px]:[--icon-right:1.2vw] max-md:h-[13vw] max-md:px-[6vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)] max-md:text-[4vw] max-md:[--icon-circle:9vw] max-md:[--icon-right:1.6vw]",
+  sm: "h-11 px-5 pr-[calc(var(--icon-circle)+var(--icon-right)+0.85rem)] text-sm [--icon-circle:1.85rem] [--icon-right:0.28rem]",
+} as const;
+
+const OVERLAY_METRICS = {
+  default:
+    "px-[2.2vw] pr-[calc(var(--icon-circle)+var(--icon-right)+1.4vw)] max-[1025px]:px-[4vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+3vw)] max-md:px-[6vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)]",
+  sm: "px-5 pr-[calc(var(--icon-circle)+var(--icon-right)+0.85rem)]",
+} as const;
+
+const ARROW_METRICS = {
+  default: "size-[1.1vw] max-[1025px]:size-[3vw] max-md:size-[4vw]",
+  sm: "size-4",
+} as const;
+
 function ArrowFillButton({
   btnText = "Hover Me",
   href = DEFAULT_HREF,
+  size = "default",
   className = "",
 
   bgColor = "#6330C7",
@@ -147,7 +167,7 @@ function ArrowFillButton({
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerCancel}
-      className={`group relative inline-flex h-[3vw] w-fit min-w-fit max-w-none cursor-pointer items-center justify-center overflow-hidden rounded-full border border-(--btn-bg) px-[2.2vw] pr-[calc(var(--icon-circle)+var(--icon-right)+1.4vw)] whitespace-nowrap font-semibold text-[0.95vw] leading-none [text-rendering:geometricPrecision] [--icon-circle:2.1vw] [--icon-right:0.45vw] [--circle-inset-y:calc((100%-var(--icon-circle))/2)] max-[1025px]:h-[9vw] max-[1025px]:px-[4vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+3vw)] max-[1025px]:text-[2.6vw] max-[1025px]:[--icon-circle:6vw] max-[1025px]:[--icon-right:1.2vw] max-md:h-[13vw] max-md:px-[6vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)] max-md:text-[4vw] max-md:[--icon-circle:9vw] max-md:[--icon-right:1.6vw] ${
+      className={`group relative inline-flex w-fit min-w-fit max-w-none cursor-pointer items-center justify-center overflow-hidden rounded-full border border-(--btn-bg) whitespace-nowrap font-semibold leading-none [text-rendering:geometricPrecision] [--circle-inset-y:calc((100%-var(--icon-circle))/2)] ${METRICS[size]} ${
         usesUtilityBackground ? "" : "bg-(--btn-bg)"
       } text-(--btn-text) ${className}`}
       style={{
@@ -175,7 +195,7 @@ function ArrowFillButton({
 
       <div
         aria-hidden="true"
-        className={`pointer-events-none absolute inset-0 z-2 flex items-center px-[2.2vw] pr-[calc(var(--icon-circle)+var(--icon-right)+1.4vw)] text-(--btn-fill-text) [clip-path:inset(var(--circle-inset-y)_var(--icon-right)_var(--circle-inset-y)_calc(100%-var(--icon-right)-var(--icon-circle)))] max-[1025px]:px-[4vw] max-[1025px]:pr-[calc(var(--icon-circle)+var(--icon-right)+3vw)] max-md:px-[6vw] max-md:pr-[calc(var(--icon-circle)+var(--icon-right)+4vw)] ${
+        className={`pointer-events-none absolute inset-0 z-2 flex items-center ${OVERLAY_METRICS[size]} text-(--btn-fill-text) [clip-path:inset(var(--circle-inset-y)_var(--icon-right)_var(--circle-inset-y)_calc(100%-var(--icon-right)-var(--icon-circle)))] ${
           isReady
             ? "transition-all duration-450 ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:text-(--btn-fill-text-hover) group-hover:[clip-path:inset(0_0_0_0)] group-data-[pressed=true]:text-(--btn-fill-text-hover) group-data-[pressed=true]:[clip-path:inset(0_0_0_0)]"
             : ""
@@ -197,7 +217,7 @@ function ArrowFillButton({
         aria-hidden="true"
       >
           <ArrowRight
-            className={`absolute left-1/2 top-1/2 size-[1.1vw] max-[1025px]:size-[3vw] max-md:size-[4vw] translate-x-[-170%] -translate-y-1/2 origin-center scale-0 text-current ${
+            className={`absolute left-1/2 top-1/2 ${ARROW_METRICS[size]} translate-x-[-170%] -translate-y-1/2 origin-center scale-0 text-current ${
               isReady
                 ? "transition-transform duration-450 ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:-translate-x-1/2 group-hover:-translate-y-1/2 group-hover:scale-100 group-data-[pressed=true]:-translate-x-1/2 group-data-[pressed=true]:-translate-y-1/2 group-data-[pressed=true]:scale-100"
                 : ""
@@ -206,7 +226,7 @@ function ArrowFillButton({
           />
 
           <ArrowRight
-            className={`absolute left-1/2 top-1/2 size-[1.1vw] max-[1025px]:size-[3vw] max-md:size-[4vw] -translate-x-1/2 -translate-y-1/2 origin-center text-current ${
+            className={`absolute left-1/2 top-1/2 ${ARROW_METRICS[size]} -translate-x-1/2 -translate-y-1/2 origin-center text-current ${
               isReady
                 ? "transition-transform duration-[450ms] ease-[cubic-bezier(0.785,0.135,0.15,0.86)] motion-reduce:transition-none group-hover:translate-x-[70%] group-hover:-translate-y-1/2 group-hover:scale-0 group-data-[pressed=true]:translate-x-[70%] group-data-[pressed=true]:-translate-y-1/2 group-data-[pressed=true]:scale-0"
                 : ""

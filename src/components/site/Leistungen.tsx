@@ -1,95 +1,108 @@
-import { Layers, ShieldCheck, Sparkles, LayoutGrid } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { TextGradient } from "@/components/ui/text-gradient";
+import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
+import {
+  InkassoVisual,
+  MahnwesenVisual,
+  MassenVisual,
+  MeridiusFallanalyseVisual,
+} from "@/components/site/leistungen-visuals";
 
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { AnimatedText } from "@/components/ui/animated-text";
-import { Card3DList, type CardData } from "@/components/ui/animated-3d-card";
-
-const cards: CardData[] = [
+const SERVICES = [
   {
-    id: "b2b-b2c",
+    n: "01",
     title: "B2B & B2C Inkasso",
     description:
       "Forderungseinzug für Unternehmen gegenüber Geschäfts- und Privatkunden, von der ersten Mahnung bis zum Inkasso.",
-    theme: "primary",
-    icon: <Layers className="h-5 w-5" />,
-    cta: "Mehr erfahren",
+    Visual: InkassoVisual,
+    flip: false,
   },
   {
-    id: "mahnwesen",
+    n: "02",
     title: "Mahnwesen",
     description:
       "Vorgerichtliches und gerichtliches Mahnwesen inklusive Betreibung und Begleitung durch das Verfahren.",
-    theme: "brand",
-    icon: <ShieldCheck className="h-5 w-5" />,
-    cta: "Mehr erfahren",
+    Visual: MahnwesenVisual,
+    flip: true,
   },
   {
-    id: "ki",
+    n: "03",
     title: "KI-Forderungsmanagement",
     description:
       "Automatisierte Fallanalyse und Priorisierung für kürzere Bearbeitungszeiten und höhere Erfolgsquoten.",
-    theme: "accent",
-    icon: <Sparkles className="h-5 w-5" />,
-    cta: "Mehr erfahren",
+    Visual: MeridiusFallanalyseVisual,
+    flip: false,
   },
   {
-    id: "massen",
+    n: "04",
     title: "Massenforderungen",
     description:
       "Spezialisiert auf Sammelinkasso mit hohem Fallvolumen — skalierbare Prozesse statt Einzelfallbearbeitung.",
-    theme: "light",
-    icon: <LayoutGrid className="h-5 w-5" />,
-    cta: "Mehr erfahren",
+    Visual: MassenVisual,
+    flip: true,
   },
-];
+] as const;
 
 export function Leistungen() {
   return (
-    <section
-      id="leistungen"
-      className="relative isolate overflow-hidden bg-white py-20 sm:py-28"
-    >
-      {/* Soft purple glow on white */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(70% 50% at 50% 0%, color-mix(in oklab, var(--brand-soft) 60%, transparent) 0%, transparent 70%)",
-        }}
-      />
-
-      {/* Centered header */}
-      <div className="relative mx-auto mb-14 max-w-3xl px-6 text-center">
-        <AnimatedGradientText className="text-brand">
-          <span className="relative mr-2 inline-flex h-1.5 w-1.5 items-center justify-center">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--brand-accent)] opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 animate-gradient rounded-full bg-[linear-gradient(to_right,var(--brand),var(--brand-accent),var(--brand-light),var(--brand))] bg-[length:var(--bg-size)_100%]" />
-          </span>
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand sm:text-xs">
-            Leistungen
-          </span>
-        </AnimatedGradientText>
-
-        <AnimatedText
-          text="Forderungsmanagement aus einer Hand"
-          fontSize="clamp(1.4rem, 1rem + 1.8vw, 2.5rem)"
-          minWeight={300}
-          maxWeight={800}
-          animationDuration={2}
-          delayMultiplier={0.18}
-          className="mt-6 tracking-tight text-brand-dark"
-        />
-        <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+    <section id="leistungen" className="relative bg-white py-16 sm:py-20">
+      {/* Header */}
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <h2
+          className="font-extrabold leading-[1.05] tracking-[-0.03em] text-[#2B2433]"
+          style={{ fontSize: "clamp(1.54rem, 1.1rem + 1.98vw, 2.75rem)" }}
+        >
+          <TextGradient
+            as="span"
+            children="Forderungsmanagement"
+            colors={["#6330C7", "#7C45E8", "#A77AF4", "#6330C7"]}
+            duration={6}
+            angle={90}
+            className="font-extrabold pb-[0.12em] leading-[1.15]"
+          />{" "}
+          aus einer Hand
+        </h2>
+        <p className="mt-4 text-xl leading-relaxed text-muted-foreground sm:text-2xl">
           Von der einzelnen offenen Rechnung bis zum Sammelinkasso über tausende
           Fälle.
         </p>
       </div>
 
+      {/* Alternating editorial service blocks */}
+      <div className="mx-auto mt-10 max-w-7xl px-6 sm:mt-12 sm:px-8">
+        {SERVICES.map((s, i) => {
+          const { Visual } = s;
+          return (
+            <div
+              key={s.n}
+              className={cn(
+                "flex flex-col gap-10 py-10 sm:gap-12 lg:min-h-[420px] lg:flex-row lg:items-center lg:gap-16 lg:py-14",
+                i > 0 && "border-t border-[#F1ECFA]",
+              )}
+            >
+              {/* Text */}
+              <div className={cn("lg:w-[42%]", s.flip && "lg:order-2")}>
+                <div className="max-w-md">
+                  <span className="font-mono text-xs font-semibold tracking-[0.22em] text-brand">
+                    {s.n}
+                  </span>
+                  <h3 className="mt-5 text-[1.8rem] font-semibold tracking-tight text-foreground sm:text-[2.35rem]">
+                    {s.title}
+                  </h3>
+                  <BlurredStaggerText
+                    text={s.description}
+                    className="mt-4 text-[18px] leading-relaxed text-muted-foreground sm:text-xl"
+                  />
+                </div>
+              </div>
 
-      {/* Cards */}
-      <div className="relative mx-auto max-w-7xl px-6">
-        <Card3DList cards={cards} columns={4} gap="md" size="md" />
+              {/* Visual */}
+              <div className={cn("w-full lg:w-[58%]", s.flip && "lg:order-1")}>
+                <Visual />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -13,7 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as KontaktRouteImport } from './routes/kontakt'
 import { Route as LeistungenRouteImport } from './routes/leistungen'
 import { Route as UberUnsRouteImport } from './routes/uber-uns'
-import { Route as ZahlungRouteImport } from './routes/zahlung'
+import { Route as ZahlungErhaltenRouteImport } from './routes/zahlung-erhalten'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -35,9 +35,9 @@ const UberUnsRoute = UberUnsRouteImport.update({
   path: '/uber-uns',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ZahlungRoute = ZahlungRouteImport.update({
-  id: '/zahlung',
-  path: '/zahlung',
+const ZahlungErhaltenRoute = ZahlungErhaltenRouteImport.update({
+  id: '/zahlung-erhalten',
+  path: '/zahlung-erhalten',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -46,14 +46,14 @@ export interface FileRoutesByFullPath {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/uber-uns': typeof UberUnsRoute
-  '/zahlung': typeof ZahlungRoute
+  '/zahlung-erhalten': typeof ZahlungErhaltenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/uber-uns': typeof UberUnsRoute
-  '/zahlung': typeof ZahlungRoute
+  '/zahlung-erhalten': typeof ZahlungErhaltenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +61,21 @@ export interface FileRoutesById {
   '/kontakt': typeof KontaktRoute
   '/leistungen': typeof LeistungenRoute
   '/uber-uns': typeof UberUnsRoute
-  '/zahlung': typeof ZahlungRoute
+  '/zahlung-erhalten': typeof ZahlungErhaltenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/kontakt' | '/leistungen' | '/uber-uns' | '/zahlung'
+  fullPaths:
+    '/' | '/kontakt' | '/leistungen' | '/uber-uns' | '/zahlung-erhalten'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/kontakt' | '/leistungen' | '/uber-uns' | '/zahlung'
-  id: '__root__' | '/' | '/kontakt' | '/leistungen' | '/uber-uns' | '/zahlung'
+  to: '/' | '/kontakt' | '/leistungen' | '/uber-uns' | '/zahlung-erhalten'
+  id:
+    | '__root__'
+    | '/'
+    | '/kontakt'
+    | '/leistungen'
+    | '/uber-uns'
+    | '/zahlung-erhalten'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +83,7 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   LeistungenRoute: typeof LeistungenRoute
   UberUnsRoute: typeof UberUnsRoute
-  ZahlungRoute: typeof ZahlungRoute
+  ZahlungErhaltenRoute: typeof ZahlungErhaltenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -109,11 +116,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UberUnsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/zahlung': {
-      id: '/zahlung'
-      path: '/zahlung'
-      fullPath: '/zahlung'
-      preLoaderRoute: typeof ZahlungRouteImport
+    '/zahlung-erhalten': {
+      id: '/zahlung-erhalten'
+      path: '/zahlung-erhalten'
+      fullPath: '/zahlung-erhalten'
+      preLoaderRoute: typeof ZahlungErhaltenRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -124,7 +131,7 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   LeistungenRoute: LeistungenRoute,
   UberUnsRoute: UberUnsRoute,
-  ZahlungRoute: ZahlungRoute,
+  ZahlungErhaltenRoute: ZahlungErhaltenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

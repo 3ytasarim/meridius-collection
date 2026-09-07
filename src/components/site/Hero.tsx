@@ -72,20 +72,6 @@ export function Hero() {
               hoverFillBgColor="#6330C7"
               hoverFillTextColor="#ffffff"
             />
-            <ArrowFillButton
-              btnText="Kontakt aufnehmen"
-              href="/kontakt"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.preventDefault();
-                navigate({ to: "/kontakt" });
-              }}
-              bgColor="#ffffff"
-              textColor="#6330C7"
-              fillBgColor="#6330C7"
-              fillTextColor="#ffffff"
-              hoverFillBgColor="#6330C7"
-              hoverFillTextColor="#ffffff"
-            />
           </div>
         </motion.div>
 

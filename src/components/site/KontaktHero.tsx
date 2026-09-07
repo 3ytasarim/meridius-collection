@@ -1,42 +1,55 @@
-import { NeuralVortexBackground } from "@/components/interactive-neural-vortex-background";
-import { GradientText } from "@/components/ui/gradient-text-fill";
+import { motion } from "framer-motion";
+
+import { GlobePulse } from "@/components/ui/cobe-globe-pulse";
+import { TextGradient } from "@/components/ui/text-gradient";
 
 export function KontaktHero() {
   return (
-    <section className="relative isolate flex min-h-[78vh] w-full items-center justify-center overflow-hidden bg-[linear-gradient(160deg,#5b21b6_0%,#6d28d9_45%,#8b5cf6_100%)] px-6 pb-28 pt-40 sm:pt-48">
-      <NeuralVortexBackground color={[0.82, 0.68, 1.0]} opacity={0.85} />
-
-      {/* subtle centre darkening for text legibility */}
+    <section className="relative isolate w-full overflow-hidden bg-[linear-gradient(155deg,#EDE4FF_0%,#F6F1FF_38%,#FFFFFF_70%,#F7F3FF_100%)]">
+      {/* faint vertical grid — same as the homepage hero */}
       <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(62%_52%_at_50%_45%,rgba(30,10,66,0.3),transparent_75%)]"
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.5] [background-image:linear-gradient(to_right,rgba(99,48,199,0.07)_1px,transparent_1px)] [background-size:112px_100%]"
       />
 
-      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-        <span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-sm sm:text-xs">
-          <span className="relative inline-flex h-1.5 w-1.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-70" />
-            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
-          </span>
-          Kontakt
-        </span>
-
-        <h1
-          className="mt-7 font-semibold leading-[1.06] tracking-tight"
-          style={{ fontSize: "clamp(2.5rem, 1.8rem + 3.6vw, 4.25rem)" }}
+      <div className="relative z-10 mx-auto grid min-h-[640px] max-w-7xl grid-cols-1 items-center gap-10 px-6 pb-20 pt-[190px] sm:px-8 lg:min-h-[720px] lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8">
+        {/* Copy — left */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-xl"
         >
-          <GradientText
-            as="span"
-            colors="#ffffff, #f1e7ff, #d9c6f7, #ffffff, #d9c6f7, #f1e7ff, #ffffff"
+          <h1
+            className="font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
+            style={{ fontSize: "clamp(2.75rem, 1.9rem + 3.9vw, 4.5rem)" }}
           >
-            Sprechen wir über Ihren Fall.
-          </GradientText>
-        </h1>
+            Sprechen wir über{" "}
+            <TextGradient
+              as="span"
+              children="Ihren Fall."
+              colors={["#6330C7", "#7C45E8", "#A77AF4", "#6330C7"]}
+              duration={6}
+              angle={90}
+              className="font-extrabold pb-[0.12em] leading-[1.15]"
+            />
+          </h1>
 
-        <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/70 sm:text-lg">
-          Ob einzelne Forderung oder Sammelinkasso mit hohem Fallvolumen — wir
-          melden uns zeitnah zurück.
-        </p>
+          <p className="mt-6 max-w-md text-pretty text-base font-bold leading-relaxed text-[#2B2433] sm:text-lg">
+            Ob einzelne Forderung oder Sammelinkasso mit hohem Fallvolumen — wir
+            melden uns zeitnah zurück.
+          </p>
+        </motion.div>
+
+        {/* Globe — right */}
+        <div className="relative flex h-[320px] w-full items-center justify-center sm:h-[420px] lg:h-[520px]">
+          {/* soft light-well behind the globe */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0 [background:radial-gradient(46%_46%_at_55%_50%,rgba(124,69,232,0.16),transparent_72%)]"
+          />
+          <GlobePulse className="h-full max-h-[460px]" />
+        </div>
       </div>
     </section>
   );

@@ -2,10 +2,10 @@
 
 import * as React from "react";
 import { motion } from "framer-motion";
-import { MapPin, ShieldCheck, ArrowRight } from "lucide-react";
+import { MapPin, ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { GradientText } from "@/components/ui/gradient-text-fill";
+import ArrowFillButton from "@/components/ui/arrow-fill-button";
 
 /**
  * Two-column location card (layout after 21st.dev
@@ -64,17 +64,17 @@ export const LocationMapPanel = React.forwardRef<
     return (
       <div
         ref={ref}
-        className={cn("mx-auto w-full max-w-7xl p-1 sm:p-4 lg:p-6", className)}
+        className={cn("w-full", className)}
         {...props}
       >
-        <div className="grid grid-cols-1 items-stretch gap-0 overflow-hidden rounded-[1.75rem] bg-[#F4EFFC] shadow-[0_40px_100px_-45px_rgba(99,48,199,0.3)] ring-1 ring-brand/12 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Left: copy + address */}
           <motion.div
             variants={container}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="flex flex-col justify-center p-7 sm:p-9 lg:px-12 lg:py-9"
+            className="flex flex-col justify-center"
           >
             <motion.div
               variants={item}
@@ -91,21 +91,16 @@ export const LocationMapPanel = React.forwardRef<
 
             <motion.h2
               variants={item}
-              className="whitespace-nowrap font-semibold leading-[1.12] tracking-tight"
-              style={{ fontSize: "clamp(1.4rem, 1rem + 1.7vw, 2.25rem)" }}
+              className="font-extrabold leading-[1.32] tracking-[-0.03em] text-[#2B2433]"
+              style={{ fontSize: "clamp(1.8rem, 1.2rem + 2vw, 2.9rem)" }}
             >
-              <GradientText
-                as="span"
-                colors="#2b1361, #6d28d9, #a855f7, #c084fc, #a855f7, #6d28d9, #2b1361"
-              >
-                {title}
-              </GradientText>
+              {title}
             </motion.h2>
 
             {intro ? (
               <motion.p
                 variants={item}
-                className="mt-5 max-w-md text-base leading-relaxed text-[#5b5566]"
+                className="mt-5 max-w-md text-base font-bold leading-relaxed text-[#2B2433]"
               >
                 {intro}
               </motion.p>
@@ -113,7 +108,7 @@ export const LocationMapPanel = React.forwardRef<
 
             <motion.div
               variants={item}
-              className="mt-6 rounded-2xl bg-white/65 p-4"
+              className="mt-7 rounded-2xl border border-white/60 bg-white/70 p-4 backdrop-blur-sm"
             >
               <div className="flex items-center gap-2.5">
                 <ShieldCheck className="size-4 shrink-0 text-brand" />
@@ -128,25 +123,34 @@ export const LocationMapPanel = React.forwardRef<
 
             <motion.div
               variants={item}
-              className="mt-6 flex flex-wrap items-center gap-4"
+              className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center"
             >
-              <a
+              <ArrowFillButton
+                btnText="Route planen"
+                size="sm"
                 href={directionsUrl ?? mapEmbedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-12 items-center justify-center rounded-xl bg-brand px-7 text-sm font-semibold text-white transition-colors hover:bg-brand-accent"
-              >
-                Route planen
-              </a>
-              <a
+                bgColor="#A77AF4"
+                textColor="#ffffff"
+                fillBgColor="#6330C7"
+                fillTextColor="#ffffff"
+                hoverFillBgColor="#6330C7"
+                hoverFillTextColor="#ffffff"
+              />
+              <ArrowFillButton
+                btnText="In Google Maps öffnen"
+                size="sm"
                 href={directionsUrl ?? mapEmbedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group text-sm text-[#5b5566] transition-colors hover:text-brand"
-              >
-                In Google Maps öffnen
-                <ArrowRight className="ml-1 inline-block size-4 transition-transform group-hover:translate-x-1" />
-              </a>
+                bgColor="#ffffff"
+                textColor="#6330C7"
+                fillBgColor="#6330C7"
+                fillTextColor="#ffffff"
+                hoverFillBgColor="#6330C7"
+                hoverFillTextColor="#ffffff"
+              />
             </motion.div>
           </motion.div>
 

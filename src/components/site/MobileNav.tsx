@@ -4,14 +4,11 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 
 import type { TubelightNavItem } from "@/components/ui/tubelight-navbar";
-import { Button3D } from "@/components/ui/button-3d";
-import { TextGradient } from "@/components/ui/text-gradient";
+import ArrowFillButton from "@/components/ui/arrow-fill-button";
 import { MeridiusLogo } from "@/components/site/MeridiusLogo";
-
-const ctaGradient = ["#FFFFFF", "#F4EFFF", "#A77AF4", "#FFFFFF"];
 
 /**
  * Mobile / tablet navigation: a hamburger that opens a modern drawer
@@ -22,6 +19,7 @@ const ctaGradient = ["#FFFFFF", "#F4EFFF", "#A77AF4", "#FFFFFF"];
 export function MobileNav({ items }: { items: TubelightNavItem[] }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => setMounted(true), []);
@@ -113,31 +111,23 @@ export function MobileNav({ items }: { items: TubelightNavItem[] }) {
                     ))}
                   </nav>
 
-                  <div className="mt-auto flex flex-col gap-3">
-                    <Button3D asChild size="sm" variant="outline" className="w-full">
-                      <Link to="/zahlung" onClick={() => setOpen(false)}>
-                        <TextGradient
-                          children="Zahlung erhalten?"
-                          as="span"
-                          colors={ctaGradient}
-                          duration={5}
-                          angle={135}
-                          className="font-semibold"
-                        />
-                      </Link>
-                    </Button3D>
-                    <Button3D asChild size="sm" className="w-full">
-                      <Link to="/kontakt" onClick={() => setOpen(false)}>
-                        <TextGradient
-                          children="Fall einreichen"
-                          as="span"
-                          colors={ctaGradient}
-                          duration={5}
-                          angle={135}
-                          className="font-semibold"
-                        />
-                      </Link>
-                    </Button3D>
+                  <div className="mt-auto flex justify-center pt-2">
+                    <ArrowFillButton
+                      btnText="Fall einreichen"
+                      href="/kontakt"
+                      size="sm"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setOpen(false);
+                        navigate({ to: "/kontakt" });
+                      }}
+                      bgColor="#A77AF4"
+                      textColor="#ffffff"
+                      fillBgColor="#6330C7"
+                      fillTextColor="#ffffff"
+                      hoverFillBgColor="#6330C7"
+                      hoverFillTextColor="#ffffff"
+                    />
                   </div>
                 </motion.div>
               </div>

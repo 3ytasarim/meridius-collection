@@ -6,7 +6,6 @@ import { AboutHero } from "@/components/site/AboutHero";
 import { AboutStatement } from "@/components/site/AboutStatement";
 import { AboutApproach } from "@/components/site/AboutApproach";
 import { AboutLocation } from "@/components/site/AboutLocation";
-import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 export const Route = createFileRoute("/uber-uns")({
   head: () => ({
@@ -38,11 +37,9 @@ function AboutPage() {
           <Header />
           <AboutHero />
         </div>
-        <BackgroundBeamsWithCollision>
-          <AboutStatement />
-          <AboutApproach />
-          <AboutLocation />
-        </BackgroundBeamsWithCollision>
+        <AboutStatement />
+        <AboutApproach />
+        <AboutLocation />
       </main>
       <Footer />
     </div>

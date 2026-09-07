@@ -9,7 +9,6 @@ const logos: Logo[] = [
   { src: "https://cdn.21st.dev/assets/mirror/90/90f01a9537335666282ae5acc80bd4305f86d085a92d60904c3aa3ccc4414570.svg", alt: "GitHub" },
   { src: "https://cdn.21st.dev/assets/mirror/96/96517bce3574d648280ff639d01d9889f354b488b3f826db5df746d730232a0c.svg", alt: "Clerk" },
   { src: "https://cdn.21st.dev/assets/mirror/fc/fc7b090ebcfc468d24a1dc482b2db1fcbfd99ca14568552a30ce553d6dda7fcb.svg", alt: "Turso" },
-  { src: "https://cdn.21st.dev/assets/mirror/e8/e8514b1206f79e1abdafcc1d2632393cc7cfbcbbe25426ac5143b17b184b56b8.svg", alt: "Claude" },
 ];
 
 export function TrustedBy() {
@@ -30,7 +29,7 @@ export function TrustedBy() {
           {/* Marquee fills the rest of the row; fades in/out at the edges */}
           <LogoMarquee
             logos={logos}
-            className="flex-1 py-2 mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
+            className="w-full min-w-0 flex-1 py-2 mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]"
           />
         </div>
       </div>

@@ -2,15 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
-import { ConfettiBackground } from "@/components/ui/confetti-background";
 import { ZahlungHero } from "@/components/site/ZahlungHero";
 import { ZahlungSicherheit } from "@/components/site/ZahlungSicherheit";
 import { ZahlungFaq } from "@/components/site/ZahlungFaq";
 import { ZahlungOptionen } from "@/components/site/ZahlungOptionen";
 import { ZahlungCta } from "@/components/site/ZahlungCta";
-import { FloatingSideCta } from "@/components/site/FloatingSideCta";
 
-export const Route = createFileRoute("/zahlung")({
+export const Route = createFileRoute("/zahlung-erhalten")({
   head: () => ({
     meta: [
       { title: "Zahlung erhalten? – Meridius Collection" },
@@ -44,19 +42,12 @@ function ZahlungPage() {
           <ZahlungHero />
         </div>
 
-        {/* Confetti spans everything from below the hero to the footer */}
-        <div className="relative isolate overflow-clip bg-[#F5F0FF]">
-          <ConfettiBackground className="z-0" />
-          <div className="relative z-10">
-            <ZahlungSicherheit />
-            <ZahlungFaq />
-            <ZahlungOptionen />
-            <ZahlungCta />
-          </div>
-        </div>
+        <ZahlungSicherheit />
+        <ZahlungOptionen />
+        <ZahlungFaq />
+        <ZahlungCta />
       </main>
       <Footer />
-      <FloatingSideCta />
     </div>
   );
 }

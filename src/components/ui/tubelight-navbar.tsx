@@ -6,7 +6,12 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /** Internal routes the navbar can point to. */
-export type NavHref = "/" | "/leistungen" | "/uber-uns" | "/kontakt" | "/zahlung";
+export type NavHref =
+  | "/"
+  | "/leistungen"
+  | "/uber-uns"
+  | "/kontakt"
+  | "/zahlung-erhalten";
 
 export interface TubelightNavItem {
   name: string;

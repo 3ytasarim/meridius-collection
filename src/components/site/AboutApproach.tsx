@@ -1,74 +1,99 @@
-import { Zap, Sparkles, ShieldCheck, ChevronRight } from "lucide-react";
+"use client";
 
-import { HighlightCard } from "@/components/highlight-card";
-import { AnimatedGradientText } from "@/components/ui/animated-gradient-text";
-import { GradientText } from "@/components/ui/gradient-text-fill";
+import { motion, useReducedMotion } from "framer-motion";
+import { Zap, Sparkles, ShieldCheck, type LucideIcon } from "lucide-react";
 
-const cards = [
+import { TextGradient } from "@/components/ui/text-gradient";
+import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
+
+type Feature = {
+  id: string;
+  title: string;
+  description: string;
+  Icon: LucideIcon;
+};
+
+const features: Feature[] = [
   {
     id: "agil",
     title: "Agil statt behäbig",
-    icon: <Zap className="size-7" />,
-    description: [
-      "Flache Hierarchien und digitale Prozesse von Beginn weg —",
-      "keine gewachsenen Altlasten, keine Papierberge.",
-    ],
+    description:
+      "Flache Hierarchien und digitale Prozesse von Beginn weg — keine gewachsenen Altlasten, keine Papierberge.",
+    Icon: Zap,
   },
   {
     id: "tech",
     title: "Technologie als Werkzeug",
-    icon: <Sparkles className="size-7" />,
-    description: [
-      "KI unterstützt unsere Fallbearbeitung, ersetzt aber nicht",
-      "die fachliche und rechtliche Beurteilung durch Menschen.",
-    ],
+    description:
+      "KI unterstützt unsere Fallbearbeitung, ersetzt aber nicht die fachliche und rechtliche Beurteilung durch Menschen.",
+    Icon: Sparkles,
   },
   {
     id: "fair",
     title: "Fair gegenüber beiden Seiten",
-    icon: <ShieldCheck className="size-7" />,
-    description: [
-      "Wir kommunizieren transparent mit Schuldnerinnen und",
-      "Schuldnern und suchen tragfähige Lösungen statt reinem Druck.",
-    ],
+    description:
+      "Wir kommunizieren transparent mit Schuldnerinnen und Schuldnern und suchen tragfähige Lösungen statt reinem Druck.",
+    Icon: ShieldCheck,
   },
 ];
 
+const GRADIENT = ["#6330C7", "#7C45E8", "#A77AF4", "#6330C7"] as const;
+
 export function AboutApproach() {
+  const reduce = useReducedMotion();
+
   return (
-    <section className="relative py-20 sm:py-28">
-      <div className="mx-auto max-w-6xl px-6">
+    <section className="relative bg-white py-20 sm:py-28">
+      <div className="mx-auto max-w-5xl px-6 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <AnimatedGradientText className="gap-0 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-[0.2em]">
-            <Sparkles className="size-3 text-brand-accent" />
-            <span className="mx-2 h-3.5 w-px bg-brand/25" />
-            <span className="animate-gradient bg-gradient-to-r from-brand-dark via-brand-accent to-brand-light bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent">
-              Ansatz
-            </span>
-            <ChevronRight className="ml-1 size-3 text-brand transition-transform duration-300 group-hover:translate-x-0.5" />
-          </AnimatedGradientText>
           <h2
-            className="mt-4 font-semibold leading-[1.08] tracking-tight"
+            className="font-bold leading-[1.1] tracking-tight"
             style={{ fontSize: "clamp(1.9rem, 1.4rem + 2vw, 3rem)" }}
           >
-            <GradientText
+            <TextGradient
               as="span"
-              colors="#2b1361, #6d28d9, #a855f7, #c084fc, #a855f7, #6d28d9, #2b1361"
-            >
-              Was uns von klassischen Inkassobüros unterscheidet
-            </GradientText>
+              children="Was uns von klassischen Inkassobüros unterscheidet"
+              colors={[...GRADIENT]}
+              duration={6}
+              angle={90}
+              className="font-bold pb-[0.12em] leading-[1.15]"
+            />
           </h2>
         </div>
 
-        <div className="mt-12 grid gap-6 sm:mt-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {cards.map((c, i) => (
-            <HighlightCard
-              key={c.id}
-              title={c.title}
-              icon={c.icon}
-              description={c.description}
-              idleDelay={i * -2.3}
-            />
+        <div className="mt-12 grid grid-cols-1 gap-6 sm:mt-16 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {features.map((f, i) => (
+            <motion.div
+              key={f.id}
+              initial={reduce ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{
+                duration: 0.5,
+                delay: reduce ? 0 : i * 0.3,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="rounded-2xl border border-[#ECE7F6] bg-white p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_18px_40px_-24px_rgba(99,48,199,0.14)] md:p-8"
+            >
+              <div className="flex size-10 items-center justify-center rounded-lg border border-brand/15 bg-[var(--brand-soft)] text-brand">
+                <f.Icon className="size-5" strokeWidth={2} aria-hidden />
+              </div>
+              <h3 className="mt-5 whitespace-nowrap text-[15px] font-semibold md:text-base">
+                <TextGradient
+                  as="span"
+                  children={f.title}
+                  colors={[...GRADIENT]}
+                  duration={6}
+                  angle={90}
+                  className="font-semibold"
+                />
+              </h3>
+              <BlurredStaggerText
+                text={f.description}
+                delay={0.25 + i * 0.55}
+                className="mt-2 text-sm leading-relaxed text-muted-foreground"
+              />
+            </motion.div>
           ))}
         </div>
       </div>
