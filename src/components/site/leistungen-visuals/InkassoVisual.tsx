@@ -21,7 +21,7 @@ export function InkassoVisual() {
       className="grid gap-4 lg:grid-cols-[minmax(0,3.35fr)_minmax(115px,1.3fr)] lg:items-stretch"
     >
       {/* Dominant main photo — purple coloured shadow behind it */}
-      <div className="overflow-hidden rounded-2xl shadow-[0_25px_55px_-14px_rgba(99,48,199,0.42)]">
+      <div className="overflow-hidden rounded-2xl shadow-[0_28px_60px_-12px_rgba(99,48,199,0.45)]">
         <img
           src="/radission-us-_XeQ8XEWb4Q-unsplash.jpg"
           alt="Beraterin unterstützt eine Kundin bei einer offenen Forderung"

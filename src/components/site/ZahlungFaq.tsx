@@ -61,7 +61,7 @@ const faqItems = [
 export function ZahlungFaq() {
   return (
     <section className="relative bg-transparent py-20 sm:py-28">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto max-w-6xl px-6">
         <div className="grid gap-8 md:grid-cols-5 md:gap-12">
           <div className="md:col-span-2">
             <h2

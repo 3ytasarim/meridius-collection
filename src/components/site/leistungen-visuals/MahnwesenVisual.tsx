@@ -54,7 +54,7 @@ export function MahnwesenVisual() {
             delay: reduce ? 0 : i * 0.12,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className={`relative overflow-hidden rounded-xl shadow-[0_25px_55px_-14px_rgba(99,48,199,0.42)] ${p.area}`}
+          className={`relative overflow-hidden rounded-xl shadow-[0_28px_60px_-12px_rgba(99,48,199,0.45)] ${p.area}`}
         >
           <img
             src={p.src}

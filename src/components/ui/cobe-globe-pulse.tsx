@@ -20,12 +20,19 @@ interface GlobePulseProps {
   speed?: number;
 }
 
-/** DACH region — where Meridius Collection works. */
+/** Spread across the map so markers stay visible as the globe turns. */
 const defaultMarkers: PulseMarker[] = [
   { id: "pulse-1", location: [47.2, 8.79], delay: 0 }, // Pfäffikon SZ
-  { id: "pulse-2", location: [47.37, 8.54], delay: 0.4 }, // Zürich
-  { id: "pulse-3", location: [50.11, 8.68], delay: 0.9 }, // Frankfurt
-  { id: "pulse-4", location: [48.21, 16.37], delay: 1.4 }, // Wien
+  { id: "pulse-2", location: [51.51, -0.13], delay: 0.3 }, // London
+  { id: "pulse-3", location: [40.71, -74.01], delay: 0.6 }, // New York
+  { id: "pulse-4", location: [-23.55, -46.63], delay: 0.9 }, // São Paulo
+  { id: "pulse-5", location: [6.52, 3.38], delay: 1.2 }, // Lagos
+  { id: "pulse-6", location: [-33.92, 18.42], delay: 1.5 }, // Kapstadt
+  { id: "pulse-7", location: [25.2, 55.27], delay: 1.8 }, // Dubai
+  { id: "pulse-8", location: [19.08, 72.88], delay: 2.1 }, // Mumbai
+  { id: "pulse-9", location: [1.35, 103.82], delay: 2.4 }, // Singapur
+  { id: "pulse-10", location: [35.68, 139.69], delay: 2.7 }, // Tokio
+  { id: "pulse-11", location: [-33.87, 151.21], delay: 3.0 }, // Sydney
 ];
 
 const PULSE = "#7C45E8";
