@@ -9,7 +9,7 @@ import {
 
 const InkassoVisual = () => (
   <SceneFrame
-    src="/b2b-anim/index.html"
+    src="/b2b-anim/reveal.html"
     title="B2B & B2C Inkasso – Forderungseinzug"
     aspect="aspect-[16/10]"
   />

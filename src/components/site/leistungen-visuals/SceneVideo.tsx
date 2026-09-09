@@ -1,5 +1,7 @@
 "use client";
 
+import * as React from "react";
+
 import { cn } from "@/lib/utils";
 
 /**
@@ -35,10 +37,22 @@ export function SceneVideo({
   );
 }
 
+/** CSS injected into the embedded scene doc to strip the standalone viewer
+ * chrome (scrub bar, "Unpacking…" toast) and the dark letterbox wrapper. */
+const HIDE_CHROME_CSS = `
+  html, body { background: #ffffff !important; overflow: hidden !important; margin: 0 !important; }
+  #__bundler_loading, #__bundler_err { display: none !important; }
+  [data-omelette-chrome] { display: none !important; }
+  [data-om-starter="animations-v3"] { background: #ffffff !important; padding: 0 !important; }
+  [data-om-starter="animations-v3"] > * { flex: 1 1 auto !important; width: 100% !important; }
+`;
+
 /**
  * SceneFrame — same framing as SceneVideo, but embeds a self-contained motion
  * HTML export (Claude Design) in an iframe for scenes that ship as code rather
- * than a rendered video.
+ * than a rendered video. Same-origin, so it re-injects a stylesheet into the
+ * embedded doc to remove the standalone player chrome (which the bundle
+ * re-adds after its async unpack).
  */
 export function SceneFrame({
   src,
@@ -52,6 +66,42 @@ export function SceneFrame({
   aspect?: string;
   className?: string;
 }) {
+  const ref = React.useRef<HTMLIFrameElement | null>(null);
+
+  React.useEffect(() => {
+    let stop = false;
+    const inject = () => {
+      const doc = ref.current?.contentDocument;
+      if (!doc) return;
+      const host = doc.head ?? doc.documentElement;
+      if (!host) return;
+      let style = doc.getElementById("__scene_hide_chrome");
+      if (!style) {
+        style = doc.createElement("style");
+        style.id = "__scene_hide_chrome";
+        host.appendChild(style);
+      }
+      if (style.textContent !== HIDE_CHROME_CSS) style.textContent = HIDE_CHROME_CSS;
+    };
+    const id = window.setInterval(() => {
+      if (stop) return;
+      try {
+        inject();
+      } catch {
+        /* cross-origin or not ready yet */
+      }
+    }, 350);
+    const stopTimer = window.setTimeout(() => {
+      stop = true;
+      window.clearInterval(id);
+    }, 8000);
+    return () => {
+      stop = true;
+      window.clearInterval(id);
+      window.clearTimeout(stopTimer);
+    };
+  }, [src]);
+
   return (
     <div
       className={cn(
@@ -60,11 +110,26 @@ export function SceneFrame({
       )}
     >
       <iframe
+        ref={ref}
         src={src}
         title={title}
         loading="lazy"
         scrolling="no"
-        className={cn("block w-full border-0 bg-transparent", aspect)}
+        onLoad={() => {
+          try {
+            const doc = ref.current?.contentDocument;
+            const host = doc?.head ?? doc?.documentElement;
+            if (doc && host && !doc.getElementById("__scene_hide_chrome")) {
+              const s = doc.createElement("style");
+              s.id = "__scene_hide_chrome";
+              s.textContent = HIDE_CHROME_CSS;
+              host.appendChild(s);
+            }
+          } catch {
+            /* ignore */
+          }
+        }}
+        className={cn("block w-full border-0 bg-white", aspect)}
       />
     </div>
   );
