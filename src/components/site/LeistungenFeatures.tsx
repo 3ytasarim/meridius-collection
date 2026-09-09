@@ -6,7 +6,6 @@ import { Check } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { ServiceFaq, type FaqItem } from "@/components/ui/service-faq";
-import { MeridiusPhone } from "@/components/ui/meridius-phone";
 
 /* ------------------------------------------------------------------ */
 /*  Shared overlay primitive — subtle reveal + gentle float           */
@@ -154,11 +153,42 @@ function MahnwesenVisual() {
 }
 
 /* ------------------------------------------------------------------ */
-/*  03 — KI-gestütztes Forderungsmanagement (phone render)            */
+/*  03 — KI-gestütztes Forderungsmanagement                           */
 /* ------------------------------------------------------------------ */
 
 function KiVisual() {
-  return <MeridiusPhone />;
+  return (
+    <div className="relative">
+      <Photo
+        src="/Pictures023.jpeg"
+        alt="KI-gestützte Fallanalyse und Priorisierung im Forderungsmanagement"
+        position="50% 50%"
+      />
+
+      <Overlay className="sm:left-4 sm:top-4" delay={0.05}>
+        <OverlayEyebrow>KI-gestützt</OverlayEyebrow>
+        <div className="mt-1 text-[13px] font-semibold text-[#171320]">
+          Priorisierung &amp; Timing
+        </div>
+      </Overlay>
+
+      <Overlay className="sm:bottom-4 sm:right-4" delay={0.18}>
+        <div className="flex flex-col gap-1.5">
+          {["Fallpriorisierung", "Kontaktzeitpunkt", "Eskalationsstufe"].map(
+            (t) => (
+              <div
+                key={t}
+                className="flex items-center gap-2 text-[12.5px] font-medium text-[#3B3550]"
+              >
+                <Check className="size-3.5 shrink-0 text-brand" strokeWidth={3} />
+                {t}
+              </div>
+            ),
+          )}
+        </div>
+      </Overlay>
+    </div>
+  );
 }
 
 /* ------------------------------------------------------------------ */
@@ -349,7 +379,14 @@ export function LeistungenFeatures() {
           {services.map((s) => (
             <article
               key={s.id}
-              className="grid gap-10 border-t border-[#EAE7EF] py-16 first:border-t-0 first:pt-0 sm:gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:items-center lg:gap-20 lg:py-24"
+              className={cn(
+                "grid gap-10 border-t border-[#EAE7EF] py-16 first:border-t-0 first:pt-0 sm:gap-12 lg:items-center lg:gap-20 lg:py-24",
+                // keep the visual column at 1.1fr on both sides so every photo
+                // renders at the same size, regardless of which side it's on
+                s.reverse
+                  ? "lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]"
+                  : "lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]",
+              )}
             >
               {/* Text + FAQ */}
               <div className={cn(s.reverse && "lg:order-2")}>
