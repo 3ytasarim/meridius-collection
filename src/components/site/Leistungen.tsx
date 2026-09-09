@@ -7,15 +7,27 @@ import {
   SceneFrame,
 } from "@/components/site/leistungen-visuals";
 
+// The B2B embed lays its two stat cards beside the main card on wide screens
+// and stacks them below it under 640px — give SceneFrame both stage ratios so
+// the frame follows suit.
+const B2B_RATIOS = { landscape: "1424 / 900", portrait: "736 / 1436" };
 const InkassoVisual = () => (
   <SceneFrame
     src="/b2b-anim/index.html"
     title="B2B & B2C Inkasso – Forderungseinzug"
-    aspect="aspect-[16/10]"
+    ratios={B2B_RATIOS}
   />
 );
+// The Mahnwesen embed places STATUS, the MAHNWESEN card and the next-step /
+// progress cards side by side on wide screens and stacks them into one column
+// under 640px (STATUS → MAHNWESEN → Nächster Schritt → Fortschritt).
+const MAHNWESEN_RATIOS = { landscape: "1600 / 900", portrait: "548 / 1648" };
 const MahnwesenVisual = () => (
-  <SceneFrame src="/mahnwesen-anim/index.html" title="Mahnwesen – Ablauf" />
+  <SceneFrame
+    src="/mahnwesen-anim/index.html"
+    title="Mahnwesen – Ablauf"
+    ratios={MAHNWESEN_RATIOS}
+  />
 );
 
 const SERVICES = [

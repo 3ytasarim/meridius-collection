@@ -13,6 +13,37 @@ const GREY = '#9a99ab';
 const SKEL = '#eceaf3';
 const SANS = '"Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif';
 
+/* ---------- responsive canvas ----------
+ * Landscape: MAHNWESEN card centre, STATUS to its left, the next-step and
+ * progress cards stacked to its right.
+ * Portrait (narrow embeds, e.g. phones): a tall canvas with everything in one
+ * column — STATUS, then MAHNWESEN, then Nächster Schritt, then Fortschritt. */
+const LAYOUT = {
+  landscape: {
+    W: 1600, H: 900,
+    status: { x: 122, y: 292 }, main: { x: 566, y: 78 },
+    next: { x: 1106, y: 205 }, prog: { x: 1106, y: 458 },
+  },
+  portrait: {
+    W: 548, H: 1648,
+    status: { x: 94, y: 36 }, main: { x: 40, y: 288 },
+    next: { x: 80, y: 1100 }, prog: { x: 88, y: 1358 },
+  },
+};
+
+function usePortrait(bp) {
+  const q = bp || 640;
+  const read = () => (typeof window !== 'undefined' ? window.innerWidth < q : false);
+  const [p, setP] = React.useState(read);
+  React.useEffect(() => {
+    const on = () => setP(read());
+    on();
+    window.addEventListener('resize', on);
+    return () => window.removeEventListener('resize', on);
+  }, [q]);
+  return p;
+}
+
 const Mail = ({ c }) => (
   <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
     <rect x="2.5" y="5" width="19" height="14" rx="3" fill={c} />
@@ -111,11 +142,12 @@ function Ring({ T, start, accent, pct }) {
   );
 }
 
-function Piece({ tweaks }) {
+function Piece({ tweaks, portrait }) {
   const { T, CUES } = useComposition();
   const accent = tweaks.accent || '#7C5CF0';
   const glow = tweaks.effects !== false;
   const pct = 72;
+  const L = portrait ? LAYOUT.portrait : LAYOUT.landscape;
 
   const pCard = M.pop(T, 0, 0.7);
   const pTitle = M.enter(T, 0.28, 0.5);
@@ -149,29 +181,49 @@ function Piece({ tweaks }) {
       position: 'absolute', inset: 0, overflow: 'hidden', fontFamily: SANS,
       background: 'radial-gradient(44% 46% at 50% 50%, #F0EAFB 0%, #F7F4FD 40%, #FFFFFF 70%)',
     }}>
-      <div style={{ position: 'absolute', inset: 0, transform: `scale(${camZ})`, transformOrigin: '50% 50%' }}>
+      <div style={{ position: 'absolute', inset: 0, transform: `scale(${camZ})`, transformOrigin: portrait ? '50% 32%' : '50% 50%' }}>
 
         {/* connectors */}
-        <svg width="1600" height="900" style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
-          <path d="M566 266 C 536 266 526 366 494 366" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(0)} />
-          <path d="M1034 266 C 1064 266 1074 328 1106 328" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(1)} />
-          <path d="M1034 548 C 1064 548 1074 592 1106 592" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(2)} />
-          {dot(566, 266, CUES.Links + 0.55)}
-          {dot(494, 366, CUES.Links + 0.7)}
-          {dot(1034, 266, CUES.Links + 0.8, 7, '#b6a6f4')}
-          {dot(1106, 328, CUES.Links + 0.92, 7, '#b6a6f4')}
-          {dot(1034, 548, CUES.Links + 1.0)}
-          {dot(1106, 592, CUES.Links + 1.12, 7, '#b6a6f4')}
+        <svg width={L.W} height={L.H} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
+          {portrait ? (
+            <g>
+              {/* one vertical spine linking the four stacked cards, centred on x=274 */}
+              <path d="M274 236 C 274 260 274 264 274 288" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(0)} />
+              <path d="M274 1048 C 274 1072 274 1076 274 1100" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(1)} />
+              <path d="M274 1306 C 274 1330 274 1334 274 1358" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(2)} />
+              {dot(274, 236, CUES.Links + 0.55)}
+              {dot(274, 1048, CUES.Links + 0.8)}
+              {dot(274, 1306, CUES.Links + 1.0)}
+            </g>
+          ) : (
+            <g>
+              <path d="M566 266 C 536 266 526 366 494 366" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(0)} />
+              <path d="M1034 266 C 1064 266 1074 328 1106 328" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(1)} />
+              <path d="M1034 548 C 1064 548 1074 592 1106 592" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.7"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - link(2)} />
+              {dot(566, 266, CUES.Links + 0.55)}
+              {dot(494, 366, CUES.Links + 0.7)}
+              {dot(1034, 266, CUES.Links + 0.8, 7, '#b6a6f4')}
+              {dot(1106, 328, CUES.Links + 0.92, 7, '#b6a6f4')}
+              {dot(1034, 548, CUES.Links + 1.0)}
+              {dot(1106, 592, CUES.Links + 1.12, 7, '#b6a6f4')}
+            </g>
+          )}
         </svg>
 
         {/* STATUS card */}
         <div style={{
-          position: 'absolute', left: 122, top: 292, width: 360, height: 200, borderRadius: 24, background: '#fff',
+          position: 'absolute', left: L.status.x, top: L.status.y, width: 360, height: 200, borderRadius: 24, background: '#fff',
           boxShadow: '0 4px 14px rgba(60,45,120,0.045), 0 24px 54px rgba(60,45,120,0.07)',
-          opacity: clamp(pStatus, 0, 1), transform: `translateX(${(1 - pStatus) * -34}px) scale(${0.97 + pStatus * 0.03})`,
+          opacity: clamp(pStatus, 0, 1),
+          transform: portrait
+            ? `translateY(${(1 - pStatus) * 22}px) scale(${0.97 + pStatus * 0.03})`
+            : `translateX(${(1 - pStatus) * -34}px) scale(${0.97 + pStatus * 0.03})`,
         }}>
           <div style={{ position: 'absolute', left: 30, top: 30, font: `600 15px/1 ${SANS}`, letterSpacing: 2.6, color: GREY }}>STATUS</div>
           <Dots left={302} top={34} />
@@ -194,7 +246,7 @@ function Piece({ tweaks }) {
 
         {/* MAHNWESEN card */}
         <div style={{
-          position: 'absolute', left: 566, top: 78, width: 468, height: 760, borderRadius: 30, background: '#fcfbfe',
+          position: 'absolute', left: L.main.x, top: L.main.y, width: 468, height: 760, borderRadius: 30, background: '#fcfbfe',
           boxShadow: '0 6px 20px rgba(60,45,120,0.05), 0 36px 84px rgba(60,45,120,0.08)',
           opacity: clamp(pCard, 0, 1), transform: `scale(${0.95 + pCard * 0.05})`, transformOrigin: '50% 45%',
         }}>
@@ -217,9 +269,12 @@ function Piece({ tweaks }) {
 
         {/* NÄCHSTER SCHRITT */}
         <div style={{
-          position: 'absolute', left: 1106, top: 205, width: 388, height: 206, borderRadius: 24, background: '#fff',
+          position: 'absolute', left: L.next.x, top: L.next.y, width: 388, height: 206, borderRadius: 24, background: '#fff',
           boxShadow: '0 4px 14px rgba(60,45,120,0.045), 0 24px 54px rgba(60,45,120,0.07)',
-          opacity: clamp(pNext, 0, 1), transform: `translateX(${(1 - pNext) * 34}px) scale(${0.97 + pNext * 0.03})`,
+          opacity: clamp(pNext, 0, 1),
+          transform: portrait
+            ? `translateY(${(1 - pNext) * 22}px) scale(${0.97 + pNext * 0.03})`
+            : `translateX(${(1 - pNext) * 34}px) scale(${0.97 + pNext * 0.03})`,
         }}>
           <div style={{ position: 'absolute', left: 32, top: 32, font: `600 15px/1 ${SANS}`, letterSpacing: 2.6, color: GREY }}>NÄCHSTER SCHRITT</div>
           <Dots left={330} top={36} />
@@ -242,9 +297,12 @@ function Piece({ tweaks }) {
 
         {/* FORTSCHRITT */}
         <div style={{
-          position: 'absolute', left: 1106, top: 458, width: 372, height: 236, borderRadius: 24, background: '#fff',
+          position: 'absolute', left: L.prog.x, top: L.prog.y, width: 372, height: 236, borderRadius: 24, background: '#fff',
           boxShadow: '0 4px 14px rgba(60,45,120,0.045), 0 24px 54px rgba(60,45,120,0.07)',
-          opacity: clamp(pProg, 0, 1), transform: `translateX(${(1 - pProg) * 34}px) scale(${0.97 + pProg * 0.03})`,
+          opacity: clamp(pProg, 0, 1),
+          transform: portrait
+            ? `translateY(${(1 - pProg) * 22}px) scale(${0.97 + pProg * 0.03})`
+            : `translateX(${(1 - pProg) * 34}px) scale(${0.97 + pProg * 0.03})`,
         }}>
           <div style={{ position: 'absolute', left: 32, top: 32, font: `600 15px/1 ${SANS}`, letterSpacing: 2.6, color: GREY }}>FORTSCHRITT</div>
           <Dots left={310} top={36} />
@@ -260,10 +318,12 @@ function Piece({ tweaks }) {
 
 window.MahnwesenVideo = function MahnwesenVideo() {
   const [t, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
+  const portrait = usePortrait(640);
+  const L = portrait ? LAYOUT.portrait : LAYOUT.landscape;
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <CompositionStage width={1600} height={900} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#ffffff">
-        <Piece tweaks={t} />
+      <CompositionStage width={L.W} height={L.H} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#ffffff">
+        <Piece tweaks={t} portrait={portrait} />
       </CompositionStage>
       <TweaksPanel>
         <TweakSection label="Look" />

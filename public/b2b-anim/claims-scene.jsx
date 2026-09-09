@@ -13,6 +13,28 @@ const INK = '#17161c';
 const GREY = '#6f6e7e';
 const SANS = '"Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif';
 
+/* ---------- responsive canvas ----------
+ * Landscape: main card centre-left, the two stat cards to its right.
+ * Portrait (narrow embeds, e.g. phones): a taller canvas with the two
+ * stat cards stacked BELOW the main card instead of beside it. */
+const LAYOUT = {
+  landscape: { W: 1424, H: 900,  cardX: 318, cardY: 80, statX: 1028, statTop1: 172, statTop2: 490 },
+  portrait:  { W: 736,  H: 1436, cardX: 60,  cardY: 40, statX: 203,  statTop1: 838, statTop2: 1128 },
+};
+
+function usePortrait(bp) {
+  const q = bp || 640;
+  const read = () => (typeof window !== 'undefined' ? window.innerWidth < q : false);
+  const [p, setP] = React.useState(read);
+  React.useEffect(() => {
+    const on = () => setP(read());
+    on();
+    window.addEventListener('resize', on);
+    return () => window.removeEventListener('resize', on);
+  }, [q]);
+  return p;
+}
+
 const group = (n) => {
   const s = String(Math.round(n));
   let out = '';
@@ -117,13 +139,13 @@ function Channel({ T, x, label, Icon, startPanel, startRows, dotStart, lineStart
   );
 }
 
-function StatCard({ T, top, tag, Icon, target, heights, start, accent, glow }) {
+function StatCard({ T, x = 1028, top, tag, Icon, target, heights, start, accent, glow }) {
   const p = M.enter(T, start, 0.8);
   const n = Math.round(animate({ from: 0, to: target, start: start + 0.5, end: start + 1.8, ease: Easing.easeOutQuart })(T));
   const max = Math.max.apply(null, heights);
   return (
     <div style={{
-      position: 'absolute', left: 1028, top, width: 330, height: 238,
+      position: 'absolute', left: x, top, width: 330, height: 238,
       borderRadius: 22, background: '#fff',
       boxShadow: '0 4px 14px rgba(60,45,120,0.05), 0 22px 50px rgba(60,45,120,0.07)',
       opacity: clamp(p, 0, 1),
@@ -162,10 +184,11 @@ function StatCard({ T, top, tag, Icon, target, heights, start, accent, glow }) {
 }
 
 /* ---------- the piece ---------- */
-function Piece({ tweaks }) {
+function Piece({ tweaks, portrait }) {
   const { T, CUES } = useComposition();
   const accent = tweaks.accent || '#7C5CF0';
   const glow = tweaks.effects !== false;
+  const L = portrait ? LAYOUT.portrait : LAYOUT.landscape;
 
   const pCard = M.pop(T, 0.15, 1.0);
   const pLabel = M.enter(T, 0.75, 0.6);
@@ -189,7 +212,7 @@ function Piece({ tweaks }) {
   };
   const camZ = animate({ from: 1.045, to: 1.0, start: 0, end: 2.2, ease: Easing.easeOutCubic })(T)
     + animate({ from: 0, to: 0.035, start: 3.0, end: 18.8, ease: Easing.linear })(T);
-  const camX = animate({ from: 0, to: -10, start: 3.0, end: 18.8, ease: Easing.linear })(T);
+  const camX = portrait ? 0 : animate({ from: 0, to: -10, start: 3.0, end: 18.8, ease: Easing.linear })(T);
 
   const dot = (cx, cy, at, r = 8) => {
     const d = M.pop(T, at, 0.5);
@@ -202,21 +225,34 @@ function Piece({ tweaks }) {
       background: 'radial-gradient(44% 46% at 50% 50%, #F0EAFB 0%, #F7F4FD 40%, #FFFFFF 70%)',
       fontFamily: SANS,
     }}>
-      <div style={{ position: 'absolute', inset: 0, transform: `translateX(${camX}px) scale(${camZ})`, transformOrigin: '46% 50%' }}>
+      <div style={{ position: 'absolute', inset: 0, transform: `translateX(${camX}px) scale(${camZ})`, transformOrigin: portrait ? '50% 20%' : '46% 50%' }}>
 
         {/* connectors to the stat cards */}
-        <svg width="1424" height="900" style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
-          <path d="M934 344 C 976 344 984 264 1020 264" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight1} />
-          <path d="M934 512 C 976 512 984 591 1020 591" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight2} />
-          {dot(1020, 264, CUES.Stats + 1.0)}
-          {dot(1020, 591, CUES.Stats + 1.9)}
+        <svg width={L.W} height={L.H} style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
+          {portrait ? (
+            <g>
+              <path d="M368 776 C 368 804 368 812 368 838" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight1} />
+              <path d="M368 1076 C 368 1100 368 1108 368 1128" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight2} />
+              {dot(368, 838, CUES.Stats + 1.0)}
+              {dot(368, 1128, CUES.Stats + 1.9)}
+            </g>
+          ) : (
+            <g>
+              <path d="M934 344 C 976 344 984 264 1020 264" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight1} />
+              <path d="M934 512 C 976 512 984 591 1020 591" fill="none" stroke={accent} strokeWidth="2.2" opacity="0.55"
+                pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pRight2} />
+              {dot(1020, 264, CUES.Stats + 1.0)}
+              {dot(1020, 591, CUES.Stats + 1.9)}
+            </g>
+          )}
         </svg>
 
         {/* main card */}
         <div style={{
-          position: 'absolute', left: 318, top: 80, width: 616, height: 720,
+          position: 'absolute', left: L.cardX, top: L.cardY, width: 616, height: 720,
           borderRadius: 30, background: '#fff',
           boxShadow: '0 6px 18px rgba(60,45,120,0.05), 0 34px 80px rgba(60,45,120,0.09)',
           opacity: clamp(pCard, 0, 1),
@@ -304,9 +340,9 @@ function Piece({ tweaks }) {
           </div>
         </div>
 
-        <StatCard T={T} top={172} tag="B2C" Icon={IconPerson} target={126}
+        <StatCard T={T} x={L.statX} top={L.statTop1} tag="B2C" Icon={IconPerson} target={126}
           heights={[22, 34, 48, 30, 44, 52, 78, 46, 40]} start={CUES.Stats + 0.15} accent={accent} glow={glow} />
-        <StatCard T={T} top={490} tag="B2B" Icon={IconBars} target={48}
+        <StatCard T={T} x={L.statX} top={L.statTop2} tag="B2B" Icon={IconBars} target={48}
           heights={[18, 42, 54, 30, 50, 44, 84, 58, 44]} start={CUES.Stats + 1.05} accent={accent} glow={glow} />
       </div>
     </div>
@@ -315,10 +351,12 @@ function Piece({ tweaks }) {
 
 window.ClaimsVideo = function ClaimsVideo() {
   const [t, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
+  const portrait = usePortrait(640);
+  const L = portrait ? LAYOUT.portrait : LAYOUT.landscape;
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <CompositionStage width={1424} height={900} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#ffffff">
-        <Piece tweaks={t} />
+      <CompositionStage width={L.W} height={L.H} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#ffffff">
+        <Piece tweaks={t} portrait={portrait} />
       </CompositionStage>
       <TweaksPanel>
         <TweakSection label="Playback" />

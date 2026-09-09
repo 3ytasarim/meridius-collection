@@ -61,15 +61,63 @@ export function SceneFrame({
   src,
   title = "Animation",
   aspect = "aspect-[16/9]",
+  ratios,
   className,
 }: {
   src: string;
   title?: string;
   /** Tailwind aspect-ratio class matching the scene's composition stage. */
   aspect?: string;
+  /**
+   * Opt-in responsive framing: when the embed itself switches to a portrait
+   * composition below 640px, pass its two `aspect-ratio` values (e.g.
+   * `{ landscape: "1424 / 900", portrait: "736 / 1560" }`). SceneFrame then
+   * measures its own width and swaps the box ratio to match, so the scene is
+   * never letterboxed. When omitted, the `aspect` class is used unchanged.
+   */
+  ratios?: { landscape: string; portrait: string };
   className?: string;
 }) {
   const ref = React.useRef<HTMLIFrameElement | null>(null);
+  const wrapRef = React.useRef<HTMLDivElement | null>(null);
+  const [isPortrait, setIsPortrait] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!ratios) return;
+    const el = wrapRef.current;
+    if (!el) return;
+    const measure = () => setIsPortrait(el.clientWidth < 640);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, [ratios]);
+
+  // When the box ratio flips, the embed's own auto-fit observer needs a nudge
+  // to re-measure against the new height (it can latch a transient value while
+  // the iframe is mid-resize).
+  React.useEffect(() => {
+    if (!ratios) return;
+    const win = ref.current?.contentWindow;
+    if (!win) return;
+    const nudge = () => {
+      try {
+        win.dispatchEvent(new Event("resize"));
+      } catch {
+        /* ignore */
+      }
+    };
+    const r = requestAnimationFrame(nudge);
+    const t = window.setTimeout(nudge, 250);
+    return () => {
+      cancelAnimationFrame(r);
+      window.clearTimeout(t);
+    };
+  }, [isPortrait, ratios]);
 
   React.useEffect(() => {
     let stop = false;
@@ -107,6 +155,7 @@ export function SceneFrame({
 
   return (
     <div
+      ref={wrapRef}
       className={cn(
         "relative mx-auto w-full max-w-[560px] overflow-hidden [mask-image:radial-gradient(88%_92%_at_50%_50%,#000_62%,transparent_100%)] lg:mx-0 lg:max-w-none",
         className,
@@ -132,14 +181,14 @@ export function SceneFrame({
             /* ignore */
           }
         }}
+        style={
+          ratios
+            ? { aspectRatio: isPortrait ? ratios.portrait : ratios.landscape }
+            : undefined
+        }
         className={cn(
-          // The composition's main card sits slightly left of centre (~44% of
-          // the canvas width) with a stray side-card far out to the right. On
-          // phones, zoom in and bias the crop left (translate 45% not 50%) so
-          // the whole B2B/B2C card reads large and the right-hand side-card is
-          // cropped away; from `sm` up it simply fits the column.
-          "relative left-1/2 block w-[185%] max-w-none -translate-x-[45%] border-0 bg-white sm:left-auto sm:w-full sm:translate-x-0",
-          aspect,
+          "mx-auto block w-full border-0 bg-white",
+          ratios ? null : aspect,
         )}
       />
     </div>
