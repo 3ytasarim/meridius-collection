@@ -403,7 +403,7 @@ function Stage({
     if (!stageRef.current) return;
     const el = stageRef.current;
     const measure = () => {
-      const barH = 44; // playback bar height
+      const barH = 0; // playback bar hidden in embeds
       const s = Math.min(
         el.clientWidth / width,
         (el.clientHeight - barH) / height

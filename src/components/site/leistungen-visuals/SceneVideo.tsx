@@ -132,7 +132,13 @@ export function SceneFrame({
             /* ignore */
           }
         }}
-        className={cn("block w-full border-0 bg-white", aspect)}
+        className={cn(
+          // On phones the fixed composition scales down to an unreadable size,
+          // so render it ~40% wider than the column and let the wrapper crop
+          // the (mostly whitespace) sides; from `sm` up it fits the column.
+          "mx-auto block border-0 bg-white w-[142%] max-w-none sm:w-full",
+          aspect,
+        )}
       />
     </div>
   );
