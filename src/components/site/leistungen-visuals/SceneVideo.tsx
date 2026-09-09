@@ -45,6 +45,9 @@ const HIDE_CHROME_CSS = `
   [data-omelette-chrome] { display: none !important; }
   [data-om-starter="animations-v3"] { background: #ffffff !important; padding: 0 !important; }
   [data-om-starter="animations-v3"] > * { flex: 1 1 auto !important; width: 100% !important; }
+  /* drop the big dark canvas drop-shadow so there is no framed "window" behind the scene */
+  svg[data-om-exportable-video-with-duration-secs],
+  [data-om-starter="animations-v3"] svg { box-shadow: none !important; }
 `;
 
 /**
@@ -105,7 +108,7 @@ export function SceneFrame({
   return (
     <div
       className={cn(
-        "relative mx-auto w-full max-w-[560px] overflow-hidden [mask-image:radial-gradient(78%_82%_at_50%_50%,#000_58%,transparent_100%)] lg:mx-0 lg:max-w-none",
+        "relative mx-auto w-full max-w-[560px] overflow-hidden [mask-image:radial-gradient(88%_92%_at_50%_50%,#000_62%,transparent_100%)] lg:mx-0 lg:max-w-none",
         className,
       )}
     >

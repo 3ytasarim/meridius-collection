@@ -171,22 +171,6 @@ function KiVisual() {
           Priorisierung &amp; Timing
         </div>
       </Overlay>
-
-      <Overlay className="sm:bottom-4 sm:right-4" delay={0.18}>
-        <div className="flex flex-col gap-1.5">
-          {["Fallpriorisierung", "Kontaktzeitpunkt", "Eskalationsstufe"].map(
-            (t) => (
-              <div
-                key={t}
-                className="flex items-center gap-2 text-[12.5px] font-medium text-[#3B3550]"
-              >
-                <Check className="size-3.5 shrink-0 text-brand" strokeWidth={3} />
-                {t}
-              </div>
-            ),
-          )}
-        </div>
-      </Overlay>
     </div>
   );
 }

@@ -308,7 +308,7 @@ export default function MeridiusFallanalyseVisual({
         width: "100%",
         aspectRatio: "1000 / 700",
         background:
-          "radial-gradient(68% 72% at 50% 46%, #F8F5FE 0%, #FCFBFF 44%, #FFFFFF 76%)",
+          "radial-gradient(66% 70% at 50% 45%, #F1ECFB 0%, #F8F4FD 44%, #FFFFFF 80%)",
         // feather every edge into the page so there is no visible frame
         WebkitMaskImage:
           "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",

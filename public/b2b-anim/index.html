@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
-<template id="__bundler_thumbnail" data-bg-color="#fbfaff">
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
   <svg viewBox="0 0 1424 900" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1424" height="900" fill="#fbfaff"/>
+    <rect width="1424" height="900" fill="#ffffff"/>
     <rect x="392" y="70" width="640" height="620" rx="34" fill="#ffffff"/>
     <text x="712" y="220" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="72" font-weight="800" fill="#17161c">CHF</text>
     <circle cx="712" cy="740" r="14" fill="#6330C7"/>
@@ -17,10 +17,11 @@
 <x-dc>
 <helmet>
 <style>
-  html, body { margin: 0; background: #fbfaff; overflow: hidden; }
+  html, body { margin: 0; background: #ffffff; overflow: hidden; }
   #__bundler_loading { display: none !important; }
   [data-omelette-chrome] { display: none !important; }
-  [data-om-starter="animations-v3"] { background: #fbfaff !important; padding: 0 !important; }
+  svg[data-om-exportable-video-with-duration-secs], [data-om-starter="animations-v3"] svg { box-shadow: none !important; }
+  [data-om-starter="animations-v3"] { background: #ffffff !important; padding: 0 !important; }
   [data-om-starter="animations-v3"] > * { flex: 1 1 auto !important; width: 100% !important; }
 </style>
 <script>window.OM_SCENES = '[{"name":"Open","dur":1.5,"desc":"The card scales in and the CHF total counts up to 12\'480","nat":3},{"name":"Channels","dur":1.8,"desc":"B2B and B2C panels rise and their three dunning steps pop in","nat":3.6},{"name":"Flow","dur":1.6,"desc":"Dots and connector lines draw, pulses travel down and converge","nat":3.2},{"name":"Payment","dur":1.3,"desc":"The green banner pops, the check draws and sparks burst","nat":2.6},{"name":"Stats","dur":2,"desc":"Case cards slide in from the right, numbers count up and bars grow","nat":4},{"name":"Settle","dur":2.4,"desc":"Everything holds while the camera drifts slowly in"}]';</script>

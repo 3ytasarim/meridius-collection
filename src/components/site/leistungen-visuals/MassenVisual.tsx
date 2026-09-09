@@ -53,8 +53,10 @@ const group = (n: number) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, "'");
 const CSS = `
 .mfv-wrap { width: 100%; max-width: 760px; container-type: inline-size; color: #14121C; }
 
-.mfv-panel { position: relative; width: 100%; aspect-ratio: 760 / 540; border-radius: 22px; overflow: hidden;
-  background: radial-gradient(62% 62% at 50% 50%, #F3EDFE 0%, #F9F7FE 55%, #FFFFFF 100%); }
+.mfv-panel { position: relative; width: 100%; aspect-ratio: 760 / 540; overflow: hidden;
+  background: radial-gradient(58% 62% at 50% 46%, #F1ECFB 0%, #F8F4FD 46%, #FFFFFF 82%);
+  -webkit-mask-image: radial-gradient(86% 90% at 50% 50%, #000 60%, transparent 100%);
+  mask-image: radial-gradient(86% 90% at 50% 50%, #000 60%, transparent 100%); }
 
 .mfv-wires { position: absolute; inset: 0; width: 100%; height: 100%; }
 

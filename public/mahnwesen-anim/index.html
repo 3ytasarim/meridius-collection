@@ -5,17 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
 <style>
-  html, body { margin: 0; background: #fbfaff; overflow: hidden; }
+  html, body { margin: 0; background: #ffffff; overflow: hidden; }
   #__bundler_loading { display: none !important; }
   /* hide the standalone transport / scrub bar + download button */
   [data-omelette-chrome] { display: none !important; }
+  svg[data-om-exportable-video-with-duration-secs], [data-om-starter="animations-v3"] svg { box-shadow: none !important; }
   /* the outer stage wrapper defaults to a dark letterbox — force it light */
-  [data-om-starter="animations-v3"] { background: #fbfaff !important; }
+  [data-om-starter="animations-v3"] { background: #ffffff !important; }
   [data-om-starter="animations-v3"] > div { padding: 0 !important; }
 </style>
-<template id="__bundler_thumbnail" data-bg-color="#fbfaff">
+<template id="__bundler_thumbnail" data-bg-color="#ffffff">
   <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
-    <rect width="1600" height="900" fill="#fbfaff"/>
+    <rect width="1600" height="900" fill="#ffffff"/>
     <rect x="120" y="150" width="900" height="600" rx="34" fill="#ffffff"/>
     <rect x="1106" y="205" width="388" height="206" rx="24" fill="#ffffff"/>
     <rect x="1106" y="458" width="372" height="236" rx="24" fill="#ffffff"/>
@@ -27,12 +28,13 @@
 <x-dc>
 <helmet>
 <style>
-  html, body { margin: 0; background: #fbfaff; overflow: hidden; }
+  html, body { margin: 0; background: #ffffff; overflow: hidden; }
   #__bundler_loading { display: none !important; }
   /* hide the standalone transport / scrub bar + download button */
   [data-omelette-chrome] { display: none !important; }
+  svg[data-om-exportable-video-with-duration-secs], [data-om-starter="animations-v3"] svg { box-shadow: none !important; }
   /* the outer stage wrapper defaults to a dark letterbox — force it light and full-bleed */
-  [data-om-starter="animations-v3"] { background: #fbfaff !important; padding: 0 !important; }
+  [data-om-starter="animations-v3"] { background: #ffffff !important; padding: 0 !important; }
   [data-om-starter="animations-v3"] > * { flex: 1 1 auto !important; width: 100% !important; }
 </style>
 <script>window.OM_SCENES = '[{"name":"Steps","dur":1.2,"desc":"The five process steps and the rail reveal in sequence","nat":2.4},{"name":"Sides","dur":1,"desc":"Status, next-step and progress cards slide in","nat":2},{"name":"Links","dur":0.9,"desc":"Connector lines draw between the cards","nat":1.8},{"name":"Progress","dur":1.1,"desc":"The ring sweeps and the number counts up to 72%","nat":2.2},{"name":"Settle","dur":2,"desc":"Everything holds with a slow drift in"}]';</script>

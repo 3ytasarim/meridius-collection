@@ -147,7 +147,7 @@ function Piece({ tweaks }) {
   return (
     <div data-screen-label={`t=${T.toFixed(0)}s`} style={{
       position: 'absolute', inset: 0, overflow: 'hidden', fontFamily: SANS,
-      background: '#fbfaff',
+      background: 'radial-gradient(64% 70% at 50% 44%, #F1ECFB 0%, #F8F4FD 44%, #FFFFFF 80%)',
     }}>
       <div style={{ position: 'absolute', inset: 0, transform: `scale(${camZ})`, transformOrigin: '50% 50%' }}>
 
@@ -262,7 +262,7 @@ window.MahnwesenVideo = function MahnwesenVideo() {
   const [t, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>
-      <CompositionStage width={1600} height={900} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#fbfaff">
+      <CompositionStage width={1600} height={900} scenes={window.OM_SCENES} playback={window.OM_PLAYBACK} bg="#ffffff">
         <Piece tweaks={t} />
       </CompositionStage>
       <TweaksPanel>
