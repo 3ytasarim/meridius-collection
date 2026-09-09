@@ -59,7 +59,8 @@ export function Leistungen() {
             duration={6}
             angle={90}
             className="font-extrabold pb-[0.12em] leading-[1.15]"
-          />{" "}
+          />
+          <br />
           aus einer Hand
         </h2>
         <p className="mt-4 text-xl leading-relaxed text-muted-foreground sm:text-2xl">
