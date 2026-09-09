@@ -43,16 +43,19 @@ export function SceneVideo({
 export function SceneFrame({
   src,
   title = "Animation",
+  aspect = "aspect-[16/9]",
   className,
 }: {
   src: string;
   title?: string;
+  /** Tailwind aspect-ratio class matching the scene's composition stage. */
+  aspect?: string;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "relative mx-auto w-full max-w-[520px] overflow-hidden rounded-2xl bg-[#FBFAFF] shadow-[0_28px_60px_-16px_rgba(99,48,199,0.4)] ring-1 ring-inset ring-brand/10 lg:mx-0 lg:max-w-none",
+        "relative mx-auto w-full max-w-[560px] overflow-hidden [mask-image:radial-gradient(78%_82%_at_50%_50%,#000_58%,transparent_100%)] lg:mx-0 lg:max-w-none",
         className,
       )}
     >
@@ -61,7 +64,7 @@ export function SceneFrame({
         title={title}
         loading="lazy"
         scrolling="no"
-        className="block aspect-[16/9] w-full border-0"
+        className={cn("block w-full border-0 bg-transparent", aspect)}
       />
     </div>
   );

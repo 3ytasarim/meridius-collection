@@ -5,10 +5,15 @@ import {
   MassenVisual,
   MeridiusFallanalyseVisual,
   SceneFrame,
-  SceneVideo,
 } from "@/components/site/leistungen-visuals";
 
-const InkassoVisual = () => <SceneVideo src="/b2b-b2c-animation.mp4" />;
+const InkassoVisual = () => (
+  <SceneFrame
+    src="/b2b-anim/index.html"
+    title="B2B & B2C Inkasso – Forderungseinzug"
+    aspect="aspect-[16/10]"
+  />
+);
 const MahnwesenVisual = () => (
   <SceneFrame src="/mahnwesen-anim/index.html" title="Mahnwesen – Ablauf" />
 );

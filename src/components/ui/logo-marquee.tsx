@@ -119,7 +119,7 @@ const LogoImage = memo(function LogoImage({ logo }: { logo: Logo }) {
       width={logo.width ?? ("auto" as unknown as number)}
       height={logo.height ?? ("auto" as unknown as number)}
       loading="lazy"
-      className="pointer-events-none h-12 w-auto select-none object-contain md:h-16"
+      className="pointer-events-none h-16 w-auto select-none object-contain md:h-24"
     />
   );
 });

@@ -307,9 +307,13 @@ export default function MeridiusFallanalyseVisual({
         overflow: "hidden",
         width: "100%",
         aspectRatio: "1000 / 700",
-        borderRadius: 20,
         background:
-          "radial-gradient(65% 75% at 50% 45%, #EFE8FC 0%, #F6F2FE 42%, #FCFBFE 72%, #FFFFFF 100%)",
+          "radial-gradient(68% 72% at 50% 46%, #F8F5FE 0%, #FCFBFF 44%, #FFFFFF 76%)",
+        // feather every edge into the page so there is no visible frame
+        WebkitMaskImage:
+          "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
+        maskImage:
+          "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
         color: INK,
       }}
     >
@@ -331,33 +335,6 @@ export default function MeridiusFallanalyseVisual({
           justifyContent: "center",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: "-14%",
-            left: "50%",
-            width: "min(1180px,120%)",
-            aspectRatio: "1/1",
-            transform: "translateX(-50%)",
-            borderRadius: "50%",
-            border: "1px solid rgba(110,58,224,0.07)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "6%",
-            left: "50%",
-            width: "min(820px,90%)",
-            aspectRatio: "1/1",
-            transform: "translateX(-50%)",
-            borderRadius: "50%",
-            border: "1px solid rgba(110,58,224,0.05)",
-            pointerEvents: "none",
-          }}
-        />
-
         <div
           style={{
             position: "relative",
@@ -573,7 +550,7 @@ export default function MeridiusFallanalyseVisual({
               flex: "0 0 auto",
               width: 258,
               filter:
-                "drop-shadow(0 60px 80px rgba(46,24,92,0.22)) drop-shadow(0 12px 24px rgba(46,24,92,0.10))",
+                "drop-shadow(0 48px 66px rgba(46,24,92,0.14)) drop-shadow(0 10px 20px rgba(46,24,92,0.07))",
             }}
           >
             <div
