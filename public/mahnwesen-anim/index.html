@@ -26,7 +26,15 @@
 <body>
 <x-dc>
 <helmet>
-<style>html, body { margin: 0; background: #fbfaff; }</style>
+<style>
+  html, body { margin: 0; background: #fbfaff; overflow: hidden; }
+  #__bundler_loading { display: none !important; }
+  /* hide the standalone transport / scrub bar + download button */
+  [data-omelette-chrome] { display: none !important; }
+  /* the outer stage wrapper defaults to a dark letterbox — force it light and full-bleed */
+  [data-om-starter="animations-v3"] { background: #fbfaff !important; padding: 0 !important; }
+  [data-om-starter="animations-v3"] > * { flex: 1 1 auto !important; width: 100% !important; }
+</style>
 <script>window.OM_SCENES = '[{"name":"Steps","dur":1.2,"desc":"The five process steps and the rail reveal in sequence","nat":2.4},{"name":"Sides","dur":1,"desc":"Status, next-step and progress cards slide in","nat":2},{"name":"Links","dur":0.9,"desc":"Connector lines draw between the cards","nat":1.8},{"name":"Progress","dur":1.1,"desc":"The ring sweeps and the number counts up to 72%","nat":2.2},{"name":"Settle","dur":2,"desc":"Everything holds with a slow drift in"}]';</script>
 <script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
 <script>window.TWEAK_DEFAULTS = {"motionEditor":false,"accent":"#6330C7","effects":true};</script>
