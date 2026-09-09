@@ -54,7 +54,7 @@ const CSS = `
 .mfv-wrap { width: 100%; max-width: 760px; container-type: inline-size; color: #14121C; }
 
 .mfv-panel { position: relative; width: 100%; aspect-ratio: 760 / 540; overflow: hidden;
-  background: radial-gradient(58% 62% at 50% 46%, #F1ECFB 0%, #F8F4FD 46%, #FFFFFF 82%);
+  background: radial-gradient(44% 46% at 50% 50%, #F0EAFB 0%, #F7F4FD 42%, #FFFFFF 72%);
   -webkit-mask-image: radial-gradient(86% 90% at 50% 50%, #000 60%, transparent 100%);
   mask-image: radial-gradient(86% 90% at 50% 50%, #000 60%, transparent 100%); }
 

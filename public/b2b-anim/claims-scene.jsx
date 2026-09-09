@@ -199,7 +199,7 @@ function Piece({ tweaks }) {
   return (
     <div data-screen-label={`t=${T.toFixed(0)}s`} style={{
       position: 'absolute', inset: 0, overflow: 'hidden',
-      background: 'radial-gradient(64% 70% at 50% 44%, #F1ECFB 0%, #F8F4FD 44%, #FFFFFF 80%)',
+      background: 'radial-gradient(44% 46% at 50% 50%, #F0EAFB 0%, #F7F4FD 40%, #FFFFFF 70%)',
       fontFamily: SANS,
     }}>
       <div style={{ position: 'absolute', inset: 0, transform: `translateX(${camX}px) scale(${camZ})`, transformOrigin: '46% 50%' }}>
