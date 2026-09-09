@@ -199,23 +199,10 @@ function Piece({ tweaks }) {
   return (
     <div data-screen-label={`t=${T.toFixed(0)}s`} style={{
       position: 'absolute', inset: 0, overflow: 'hidden',
-      background: 'radial-gradient(120% 100% at 18% 88%, #efeafc 0%, #f8f7fd 45%, #fdfdff 100%)',
+      background: '#fbfaff',
       fontFamily: SANS,
     }}>
       <div style={{ position: 'absolute', inset: 0, transform: `translateX(${camX}px) scale(${camZ})`, transformOrigin: '46% 50%' }}>
-
-        {/* faint background arcs */}
-        <svg width="1424" height="900" style={{ position: 'absolute', left: 0, top: 0 }}>
-          <circle cx="240" cy="470" r="430" fill="none" stroke="#ddd6f3" strokeWidth="1.2" opacity={0.55 * clamp(M.enter(T, 0.2, 1.4), 0, 1)} />
-          <circle cx="240" cy="470" r="540" fill="none" stroke="#e4dff5" strokeWidth="1.2" opacity={0.4 * clamp(M.enter(T, 0.4, 1.6), 0, 1)} />
-        </svg>
-
-        {/* soft halo behind the main card */}
-        <div style={{
-          position: 'absolute', left: 318, top: 80, width: 616, height: 720, borderRadius: 34,
-          boxShadow: glow ? `0 0 0 1px ${accent}0d, 0 0 90px ${accent}1f` : 'none',
-          opacity: clamp(M.enter(T, CUES.Payment + 0.2, 1.2), 0, 1) * (glow ? 1 : 0),
-        }} />
 
         {/* connectors to the stat cards */}
         <svg width="1424" height="900" style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>

@@ -147,19 +147,9 @@ function Piece({ tweaks }) {
   return (
     <div data-screen-label={`t=${T.toFixed(0)}s`} style={{
       position: 'absolute', inset: 0, overflow: 'hidden', fontFamily: SANS,
-      background: 'radial-gradient(120% 120% at 12% 90%, #f0ecfb 0%, #f7f6fc 48%, #fdfdff 100%)',
+      background: '#fbfaff',
     }}>
       <div style={{ position: 'absolute', inset: 0, transform: `scale(${camZ})`, transformOrigin: '50% 50%' }}>
-
-        {/* orbit */}
-        <svg width="1600" height="900" style={{ position: 'absolute', left: 0, top: 0 }}>
-          <ellipse cx="800" cy="450" rx="590" ry="372" fill="none" stroke="#e0dcef" strokeWidth="1.4"
-            pathLength="1" strokeDasharray="1" strokeDashoffset={1 - pOrbit} />
-          {[[482, 138], [1178, 140], [214, 566], [482, 730], [1098, 782]].map(([x, y], i) => {
-            const d = M.pop(T, 0.55 + i * 0.1, 0.6);
-            return <circle key={i} cx={x} cy={y} r={7 * clamp(d, 0, 1)} fill={accent} opacity="0.3" />;
-          })}
-        </svg>
 
         {/* connectors */}
         <svg width="1600" height="900" style={{ position: 'absolute', left: 0, top: 0, overflow: 'visible' }}>
