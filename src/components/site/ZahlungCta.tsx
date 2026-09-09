@@ -30,7 +30,7 @@ export function ZahlungCta() {
           className="font-bold leading-[1.1] tracking-tight text-white [text-shadow:0_2px_24px_rgba(20,6,60,0.45)]"
           style={{ fontSize: "clamp(1.7rem, 1.2rem + 2vw, 2.9rem)" }}
         >
-          Fragen bleiben offen?
+          Offene Fragen?
         </h2>
 
         <ArrowFillButton
