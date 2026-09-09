@@ -17,6 +17,10 @@ const container: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.04, delayChildren: 0.2 } },
 };
+const word: Variants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.04 } },
+};
 const letter: Variants = {
   hidden: { opacity: 0, y: 42 },
   visible: {
@@ -58,15 +62,26 @@ export function KontaktHero() {
           className="font-extrabold leading-[1.03] tracking-[-0.035em] text-[#2B2433]"
           style={{ fontSize: "clamp(2.75rem, 1.9rem + 3.9vw, 4.5rem)" }}
         >
-          {LEAD.split("").map((char, i) => (
-            <motion.span
-              key={i}
-              variants={letter}
-              className="inline-block whitespace-pre"
-            >
-              {char}
-            </motion.span>
-          ))}
+          {LEAD.trim()
+            .split(" ")
+            .map((w, wi) => (
+              <React.Fragment key={wi}>
+                <motion.span
+                  variants={word}
+                  className="inline-block whitespace-nowrap"
+                >
+                  {[...w].map((char, ci) => (
+                    <motion.span
+                      key={ci}
+                      variants={letter}
+                      className="inline-block"
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.span>{" "}
+              </React.Fragment>
+            ))}
           <motion.span variants={letter} className="inline-block">
             <TextGradient
               as="span"

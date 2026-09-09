@@ -1,10 +1,13 @@
 "use client";
 
+import { Fragment } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
- * Letter-by-letter blur-in reveal (from 21st.dev ruixen.ui/text-reveal-faqs).
- * Fires once when the text scrolls into view.
+ * Word-grouped, letter-by-letter blur-in reveal (from 21st.dev
+ * ruixen.ui/text-reveal-faqs). Fires once when the text scrolls into view.
+ * Each word is an inline-block/nowrap group so lines only break at spaces —
+ * never mid-word and never orphaning a trailing period.
  */
 export function BlurredStaggerText({
   text,
@@ -28,8 +31,13 @@ export function BlurredStaggerText({
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.02, delayChildren: 0.08 + delay },
+      transition: { staggerChildren: 0.014, delayChildren: 0.08 + delay },
     },
+  };
+
+  const wordAnimation = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.014 } },
   };
 
   const letterAnimation = {
@@ -50,6 +58,8 @@ export function BlurredStaggerText({
           viewport: { once: true, amount: 0.5, margin: "0px 0px -30% 0px" },
         };
 
+  const words = text.split(" ");
+
   return (
     <MotionTag
       variants={container}
@@ -57,15 +67,25 @@ export function BlurredStaggerText({
       {...triggerProps}
       className={className}
     >
-      {text.split("").map((char, index) => (
-        <motion.span
-          key={index}
-          variants={letterAnimation}
-          transition={{ duration: 0.3 }}
-          className="inline-block whitespace-pre"
-        >
-          {char === " " ? " " : char}
-        </motion.span>
+      {words.map((word, wi) => (
+        <Fragment key={wi}>
+          <motion.span
+            variants={wordAnimation}
+            className="inline-block whitespace-nowrap"
+          >
+            {[...word].map((char, ci) => (
+              <motion.span
+                key={ci}
+                variants={letterAnimation}
+                transition={{ duration: 0.3 }}
+                className="inline-block"
+              >
+                {char}
+              </motion.span>
+            ))}
+          </motion.span>
+          {wi < words.length - 1 ? " " : null}
+        </Fragment>
       ))}
     </MotionTag>
   );

@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
+
+import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
 
 import {
   Accordion,
@@ -98,7 +99,11 @@ export function ZahlungFaq() {
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent>
-                    <BlurredStagger text={item.answer} />
+                    <BlurredStaggerText
+                      text={item.answer}
+                      trigger="mount"
+                      className="whitespace-normal text-[16px] leading-[1.75] text-[#5b5566] sm:text-[17px]"
+                    />
                   </AccordionContent>
                 </AccordionItem>
               ))}
@@ -120,54 +125,3 @@ export function ZahlungFaq() {
     </section>
   );
 }
-
-export const BlurredStagger = ({
-  text = "built by ruixen.com",
-}: {
-  text?: string;
-}) => {
-  const headingText = text;
-
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.015,
-      },
-    },
-  };
-
-  const letterAnimation = {
-    hidden: {
-      opacity: 0,
-      filter: "blur(10px)",
-    },
-    show: {
-      opacity: 1,
-      filter: "blur(0px)",
-    },
-  };
-
-  return (
-    <div className="w-full">
-      <motion.p
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="whitespace-normal break-words text-[16px] leading-[1.75] text-[#5b5566] sm:text-[17px]"
-      >
-        {headingText.split("").map((char, index) => (
-          <motion.span
-            key={index}
-            variants={letterAnimation}
-            transition={{ duration: 0.3 }}
-            className="inline-block"
-          >
-            {char === " " ? " " : char}
-          </motion.span>
-        ))}
-      </motion.p>
-    </div>
-  );
-};
