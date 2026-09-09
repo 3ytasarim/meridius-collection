@@ -1,12 +1,27 @@
 import { LogoMarquee, type Logo } from "@/components/ui/logo-marquee";
 
-const logos: Logo[] = Array.from({ length: 10 }, (_, i) => {
-  const n = String(i + 1).padStart(2, "0");
-  return {
-    src: `/Meridius_horizontal_invoice_${n}.png`,
-    alt: `Meridius Rechnungsbeispiel ${n}`,
-  };
-});
+const logos: Logo[] = [
+  {
+    src: "/Meridius_status_01_Kontakt_transparent.png",
+    alt: "Meridius Statusschritt: Kontakt",
+  },
+  {
+    src: "/Meridius_status_02_Zahlung_transparent.png",
+    alt: "Meridius Statusschritt: Zahlung",
+  },
+  {
+    src: "/Meridius_status_03_Rechnung_transparent.png",
+    alt: "Meridius Statusschritt: Rechnung",
+  },
+  {
+    src: "/Meridius_status_04_Ratenzahlung_transparent.png",
+    alt: "Meridius Statusschritt: Ratenzahlung",
+  },
+  {
+    src: "/Meridius_status_05_Fall_transparent.png",
+    alt: "Meridius Statusschritt: Fall",
+  },
+];
 
 export function TrustedBy() {
   return (

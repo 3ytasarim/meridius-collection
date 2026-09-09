@@ -2,11 +2,13 @@ import { cn } from "@/lib/utils";
 import { TextGradient } from "@/components/ui/text-gradient";
 import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
 import {
-  InkassoVisual,
   MahnwesenVisual,
   MassenVisual,
   MeridiusFallanalyseVisual,
+  SceneVideo,
 } from "@/components/site/leistungen-visuals";
+
+const InkassoVisual = () => <SceneVideo src="/b2b-b2c-animation.mp4" />;
 
 const SERVICES = [
   {
