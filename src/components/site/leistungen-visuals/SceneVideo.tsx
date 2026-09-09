@@ -133,10 +133,12 @@ export function SceneFrame({
           }
         }}
         className={cn(
-          // On phones the fixed composition scales down to an unreadable size,
-          // so render it ~40% wider than the column and let the wrapper crop
-          // the (mostly whitespace) sides; from `sm` up it fits the column.
-          "mx-auto block border-0 bg-white w-[142%] max-w-none sm:w-full",
+          // The composition's main card sits slightly left of centre (~44% of
+          // the canvas width) with a stray side-card far out to the right. On
+          // phones, zoom in and bias the crop left (translate 45% not 50%) so
+          // the whole B2B/B2C card reads large and the right-hand side-card is
+          // cropped away; from `sm` up it simply fits the column.
+          "relative left-1/2 block w-[185%] max-w-none -translate-x-[45%] border-0 bg-white sm:left-auto sm:w-full sm:translate-x-0",
           aspect,
         )}
       />
