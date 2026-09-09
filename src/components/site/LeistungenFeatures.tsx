@@ -157,18 +157,40 @@ function MahnwesenVisual() {
 /* ------------------------------------------------------------------ */
 
 function KiVisual() {
+  const analyse = [
+    ["Priorität", "Hoch"],
+    ["Risiko", "Mittel"],
+    ["Nächster Schritt", "Kontakt"],
+  ] as const;
   return (
     <div className="relative">
       <Photo
-        src="/Pictures023.jpeg"
-        alt="KI-gestützte Fallanalyse und Priorisierung im Forderungsmanagement"
-        position="50% 50%"
+        src="/ki-forderungen-dashboard.png"
+        alt="KI-gestütztes Forderungsmanagement-Dashboard: Übersicht, Risikoverteilung und nächste Schritte"
+        position="50% 42%"
       />
 
       <Overlay className="sm:left-4 sm:top-4" delay={0.05}>
         <OverlayEyebrow>KI-gestützt</OverlayEyebrow>
         <div className="mt-1 text-[13px] font-semibold text-[#171320]">
           Priorisierung &amp; Timing
+        </div>
+      </Overlay>
+
+      <Overlay className="sm:bottom-4 sm:right-4 sm:max-w-[240px]" delay={0.18}>
+        <div className="flex items-start justify-between gap-3">
+          <OverlayEyebrow>KI-Analyse</OverlayEyebrow>
+          <span className="grid size-4 shrink-0 place-items-center rounded-full bg-brand/12 text-brand">
+            <Check className="size-2.5" strokeWidth={3.5} />
+          </span>
+        </div>
+        <div className="mt-2 flex flex-col gap-1.5">
+          {analyse.map(([label, value]) => (
+            <div key={label} className="text-[12.5px] text-[#3B3550]">
+              {label}:{" "}
+              <span className="font-semibold text-brand">{value}</span>
+            </div>
+          ))}
         </div>
       </Overlay>
     </div>
