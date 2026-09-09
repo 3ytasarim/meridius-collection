@@ -17,7 +17,7 @@ export function Header() {
   return (
     <>
       <header className="absolute inset-x-0 top-0 z-50 bg-transparent">
-        <div className="mx-auto flex max-w-[1720px] items-center gap-6 px-6 py-4 sm:px-8">
+        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-4 sm:px-8">
           {/* Logo — left */}
           <MeridiusLogo />
 

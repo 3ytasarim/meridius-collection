@@ -57,7 +57,7 @@ export function CTA() {
 
   return (
     <section id="cta" className="relative bg-white py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl px-6">
+      <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Wide, thin horizontal band — desktop ≈ 4.4:1; stacks on tablet / mobile */}
         <div className="relative isolate overflow-hidden rounded-[2rem] bg-[linear-gradient(120deg,#E4D6FF_0%,#EEE6FF_44%,#F6F1FF_100%)] px-6 py-8 ring-1 ring-inset ring-brand/12 sm:px-8 lg:px-10 lg:py-5">
           {/* animated purple glow — directly behind the left visual */}
@@ -152,11 +152,12 @@ export function CTA() {
                 und halten Sie über jeden Schritt auf dem Laufenden.
               </p>
 
-              <div className="mt-3 flex flex-row flex-wrap items-center gap-3">
+              <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <ArrowFillButton
                   btnText="Fall einreichen"
                   size="sm"
                   href="/kontakt"
+                  className="!w-full !min-w-0"
                   onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     navigate({ to: "/kontakt" });
@@ -172,6 +173,7 @@ export function CTA() {
                   btnText="Mehr zu den Leistungen"
                   size="sm"
                   href="/leistungen"
+                  className="!w-full !min-w-0"
                   onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                     e.preventDefault();
                     navigate({ to: "/leistungen" });
