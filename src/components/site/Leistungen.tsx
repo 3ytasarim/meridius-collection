@@ -2,13 +2,16 @@ import { cn } from "@/lib/utils";
 import { TextGradient } from "@/components/ui/text-gradient";
 import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
 import {
-  MahnwesenVisual,
   MassenVisual,
   MeridiusFallanalyseVisual,
+  SceneFrame,
   SceneVideo,
 } from "@/components/site/leistungen-visuals";
 
 const InkassoVisual = () => <SceneVideo src="/b2b-b2c-animation.mp4" />;
+const MahnwesenVisual = () => (
+  <SceneFrame src="/mahnwesen-anim/index.html" title="Mahnwesen – Ablauf" />
+);
 
 const SERVICES = [
   {

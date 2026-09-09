@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+<style>
+  html, body { margin: 0; background: #fbfaff; overflow: hidden; }
+  #__bundler_loading { display: none !important; }
+  /* hide the standalone transport / scrub bar + download button */
+  [data-omelette-chrome] { display: none !important; }
+  /* the outer stage wrapper defaults to a dark letterbox — force it light */
+  [data-om-starter="animations-v3"] { background: #fbfaff !important; }
+  [data-om-starter="animations-v3"] > div { padding: 0 !important; }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#fbfaff">
+  <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1600" height="900" fill="#fbfaff"/>
+    <rect x="120" y="150" width="900" height="600" rx="34" fill="#ffffff"/>
+    <rect x="1106" y="205" width="388" height="206" rx="24" fill="#ffffff"/>
+    <rect x="1106" y="458" width="372" height="236" rx="24" fill="#ffffff"/>
+    <circle cx="600" cy="450" r="14" fill="#6330C7"/>
+  </svg>
+</template>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>html, body { margin: 0; background: #fbfaff; }</style>
+<script>window.OM_SCENES = '[{"name":"Steps","dur":1.2,"desc":"The five process steps and the rail reveal in sequence","nat":2.4},{"name":"Sides","dur":1,"desc":"Status, next-step and progress cards slide in","nat":2},{"name":"Links","dur":0.9,"desc":"Connector lines draw between the cards","nat":1.8},{"name":"Progress","dur":1.1,"desc":"The ring sweeps and the number counts up to 72%","nat":2.2},{"name":"Settle","dur":2,"desc":"Everything holds with a slow drift in"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"loop"}';</script>
+<script>window.TWEAK_DEFAULTS = {"motionEditor":false,"accent":"#6330C7","effects":true};</script>
+</helmet>
+<x-import component-from-global-scope="MahnwesenVideo" from="./animations-v3.jsx ./tweaks-panel.jsx ./mahnwesen-scene.jsx" hint-size="100%,100%"></x-import>
+</x-dc>
+</body>
+</html>

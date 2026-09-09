@@ -35,4 +35,36 @@ export function SceneVideo({
   );
 }
 
+/**
+ * SceneFrame — same framing as SceneVideo, but embeds a self-contained motion
+ * HTML export (Claude Design) in an iframe for scenes that ship as code rather
+ * than a rendered video.
+ */
+export function SceneFrame({
+  src,
+  title = "Animation",
+  className,
+}: {
+  src: string;
+  title?: string;
+  className?: string;
+}) {
+  return (
+    <div
+      className={cn(
+        "relative mx-auto w-full max-w-[520px] overflow-hidden rounded-2xl bg-[#FBFAFF] shadow-[0_28px_60px_-16px_rgba(99,48,199,0.4)] ring-1 ring-inset ring-brand/10 lg:mx-0 lg:max-w-none",
+        className,
+      )}
+    >
+      <iframe
+        src={src}
+        title={title}
+        loading="lazy"
+        scrolling="no"
+        className="block aspect-[16/9] w-full border-0"
+      />
+    </div>
+  );
+}
+
 export default SceneVideo;
