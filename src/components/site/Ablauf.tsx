@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { FileUp, ScanSearch, Scale, Wallet, type LucideIcon } from "lucide-react";
 
 import { TextGradient } from "@/components/ui/text-gradient";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 type Step = {
   title: string;
@@ -76,17 +77,27 @@ export function Ablauf() {
                 delay: reduce ? 0 : i * 0.08,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="rounded-2xl border border-[#ECE7F6] bg-white p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_16px_36px_-20px_rgba(99,48,199,0.16)] sm:p-7"
+              className="h-full"
             >
-              <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-soft)] text-brand">
-                <step.Icon className="size-[22px]" strokeWidth={1.75} aria-hidden />
-              </span>
-              <h3 className="mt-5 text-xl font-semibold tracking-tight text-brand-dark sm:text-[1.35rem]">
-                {step.title}
-              </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground sm:text-base">
-                {step.description}
-              </p>
+              <GlowCard
+                glowColor="purple"
+                customSize
+                className="flex h-full w-full flex-col gap-0 p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_16px_36px_-20px_rgba(99,48,199,0.16)] sm:p-7"
+              >
+                <span className="flex size-11 items-center justify-center rounded-full bg-[var(--brand-soft)] text-brand">
+                  <step.Icon
+                    className="size-[22px]"
+                    strokeWidth={1.75}
+                    aria-hidden
+                  />
+                </span>
+                <h3 className="mt-5 text-xl font-semibold tracking-tight text-brand-dark sm:text-[1.35rem]">
+                  {step.title}
+                </h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground sm:text-base">
+                  {step.description}
+                </p>
+              </GlowCard>
             </motion.article>
           ))}
         </div>

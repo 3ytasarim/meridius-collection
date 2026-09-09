@@ -63,21 +63,21 @@ export function ZahlungSicherheit() {
             verdächtigen Nachricht.
           </p>
 
-          <div className="mt-10 space-y-8">
+          <div className="mt-8 space-y-6">
             {features.map((f) => (
               <div key={f.id}>
-                <div className="flex size-10 items-center justify-center rounded-lg border border-brand/15 bg-[var(--brand-soft)] text-brand">
-                  <f.Icon className="size-5" strokeWidth={2} aria-hidden />
-                </div>
-                <div className="mt-4 space-y-1.5">
-                  <h3 className="text-base font-bold text-[#241E33]">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 shrink-0 items-center justify-center rounded-lg border border-brand/15 bg-[var(--brand-soft)] text-brand">
+                    <f.Icon className="size-5" strokeWidth={2} aria-hidden />
+                  </div>
+                  <h3 className="min-w-0 text-[15px] font-bold leading-tight text-[#241E33] sm:text-base">
                     {f.title}
                   </h3>
-                  <BlurredStaggerText
-                    text={f.description}
-                    className="text-sm font-medium leading-relaxed text-[#4C4658]"
-                  />
                 </div>
+                <BlurredStaggerText
+                  text={f.description}
+                  className="mt-2.5 text-sm font-medium leading-relaxed text-[#4C4658]"
+                />
               </div>
             ))}
           </div>

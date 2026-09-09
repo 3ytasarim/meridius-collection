@@ -80,14 +80,17 @@ export function MobileNav({ items }: { items: TubelightNavItem[] }) {
                   className="absolute inset-y-0 right-0 flex w-[min(86vw,360px)] flex-col gap-8 rounded-l-[1.75rem] border-l border-brand/10 bg-[#EDE6FB] p-6 shadow-[-30px_0_70px_-30px_rgba(99,48,199,0.45)]"
                 >
                   <div className="flex items-center justify-between">
-                    <span onClick={() => setOpen(false)}>
+                    <span
+                      onClick={() => setOpen(false)}
+                      className="inline-flex items-center"
+                    >
                       <MeridiusLogo />
                     </span>
                     <button
                       type="button"
                       aria-label="Menü schließen"
                       onClick={() => setOpen(false)}
-                      className="grid size-9 place-items-center rounded-lg text-brand-dark transition-colors hover:bg-white"
+                      className="-mr-1 grid size-9 place-items-center rounded-lg text-brand-dark transition-colors hover:bg-white"
                     >
                       <X className="size-5" />
                     </button>
@@ -111,7 +114,7 @@ export function MobileNav({ items }: { items: TubelightNavItem[] }) {
                     ))}
                   </nav>
 
-                  <div className="mt-auto flex justify-center pt-2">
+                  <div className="-mt-3 flex justify-center">
                     <ArrowFillButton
                       btnText="Fall einreichen"
                       href="/kontakt"

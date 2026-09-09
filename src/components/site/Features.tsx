@@ -2,9 +2,9 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 
-import { cn } from "@/lib/utils";
 import { TextGradient } from "@/components/ui/text-gradient";
 import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 type Feature = {
   eyebrow: string;
@@ -42,7 +42,7 @@ export function Features() {
     <section className="relative overflow-hidden bg-background py-14 sm:py-16">
       <div className="absolute inset-x-0 top-0 h-px bg-primary/10" />
 
-      <div className="mx-auto grid max-w-7xl gap-y-12 px-6 sm:px-8 lg:grid-cols-3 lg:gap-y-0">
+      <div className="mx-auto grid max-w-7xl gap-6 px-6 sm:px-8 lg:grid-cols-3 lg:gap-8">
         {features.map((f, i) => (
           <motion.article
             key={f.eyebrow}
@@ -54,46 +54,48 @@ export function Features() {
               delay: reduce ? 0 : i * 0.28,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className={cn(
-              i > 0 &&
-                "lg:border-l lg:border-dashed lg:border-primary/25 lg:pl-12 xl:pl-16",
-              i < features.length - 1 && "lg:pr-12 xl:pr-16",
-            )}
+            className="h-full"
           >
-            <div className="flex items-baseline gap-3">
-              <span className="text-xs font-bold tabular-nums text-primary">
-                0{i + 1}
-              </span>
-              <p className="text-xs font-bold uppercase tracking-wide text-primary">
-                {f.eyebrow}
-              </p>
-            </div>
+            <GlowCard
+              glowColor="purple"
+              customSize
+              className="flex h-full w-full flex-col gap-0 p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_20px_44px_-26px_rgba(99,48,199,0.22)] lg:p-7"
+            >
+              <div className="flex items-baseline gap-3">
+                <span className="text-xs font-bold tabular-nums text-primary">
+                  0{i + 1}
+                </span>
+                <p className="text-xs font-bold uppercase tracking-wide text-primary">
+                  {f.eyebrow}
+                </p>
+              </div>
 
-            <h2 className="mt-5 whitespace-nowrap text-[clamp(1.7rem,2vw,2.35rem)] font-extrabold leading-[1.14]">
-              <TextGradient
-                as="span"
-                children={f.title[0]}
-                colors={[...GRADIENT]}
-                duration={6}
-                angle={90}
-                className="font-extrabold"
-              />
-              <br />
-              <TextGradient
-                as="span"
-                children={f.title[1]}
-                colors={[...GRADIENT]}
-                duration={6}
-                angle={90}
-                className="font-extrabold"
-              />
-            </h2>
+              <h2 className="mt-5 text-[clamp(1.45rem,1.6vw,1.95rem)] font-extrabold leading-[1.16]">
+                <TextGradient
+                  as="span"
+                  children={f.title[0]}
+                  colors={[...GRADIENT]}
+                  duration={6}
+                  angle={90}
+                  className="font-extrabold"
+                />
+                <br />
+                <TextGradient
+                  as="span"
+                  children={f.title[1]}
+                  colors={[...GRADIENT]}
+                  duration={6}
+                  angle={90}
+                  className="font-extrabold"
+                />
+              </h2>
 
-            <BlurredStaggerText
-              text={f.paragraph}
-              delay={i * 0.55}
-              className="mt-7 max-w-[38ch] whitespace-normal text-base leading-7 text-muted-foreground sm:text-[1.0625rem]"
-            />
+              <BlurredStaggerText
+                text={f.paragraph}
+                delay={i * 0.55}
+                className="mt-7 max-w-[38ch] whitespace-normal text-base leading-7 text-muted-foreground sm:text-[1.0625rem]"
+              />
+            </GlowCard>
           </motion.article>
         ))}
       </div>

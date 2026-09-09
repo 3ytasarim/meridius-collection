@@ -80,13 +80,15 @@ export function Hero() {
           {/* soft light-well so the particles read on the bright surface */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 [background:radial-gradient(50%_50%_at_55%_50%,rgba(43,15,92,0.16),transparent_70%)]"
+            className="pointer-events-none absolute inset-0 [background:radial-gradient(50%_50%_at_55%_50%,rgba(43,15,92,0.24),transparent_70%)]"
           />
           <ClientOnly fallback={null}>
             <React.Suspense fallback={null}>
               <OrbitalSphere
-                haloOpacity={0.32}
-                orbitOpacity={0.3}
+                particleOpacity={1}
+                particleSize={0.021}
+                haloOpacity={0.55}
+                orbitOpacity={0.6}
                 className="left-1/2 top-1/2 aspect-square h-full max-h-full w-auto -translate-x-1/2 -translate-y-1/2"
               />
             </React.Suspense>

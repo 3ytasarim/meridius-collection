@@ -6,6 +6,7 @@ import { Link } from "@tanstack/react-router";
 import { Mail, MapPin, Phone, Sparkle } from "lucide-react";
 
 import { TextGradient } from "@/components/ui/text-gradient";
+import { WhirlpoolLoader } from "@/components/ui/loading-animation";
 
 const navLinks = [
   { label: "Start", href: "/" },
@@ -60,8 +61,8 @@ export function Footer() {
     <footer className="w-full border-t border-[#ECE7F6] bg-white">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20">
         <div className="flex flex-col justify-between gap-12 lg:flex-row lg:items-start">
-          {/* Brand — logo only */}
-          <AnimatedContainer className="lg:max-w-xs">
+          {/* Brand — logo + whirlpool mark (centred under the logo on desktop) */}
+          <AnimatedContainer className="flex flex-col items-start gap-6 lg:max-w-xs lg:items-center">
             <Link
               to="/"
               aria-label="Meridius Collection"
@@ -75,6 +76,7 @@ export function Footer() {
                 className="h-7 w-auto"
               />
             </Link>
+            <WhirlpoolLoader className="size-20 opacity-90 sm:size-24 lg:size-28" />
           </AnimatedContainer>
 
           {/* Link sections */}

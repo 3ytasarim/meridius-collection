@@ -20,8 +20,8 @@ export function MeridiusLogo({ variant = "color", className }: MeridiusLogoProps
         height={189}
         className={
           variant === "white"
-            ? "h-7 w-auto [filter:brightness(0)_invert(1)]"
-            : "h-6 w-auto sm:h-7"
+            ? "h-[33px] w-auto [filter:brightness(0)_invert(1)]"
+            : "h-7 w-auto"
         }
       />
     </Link>

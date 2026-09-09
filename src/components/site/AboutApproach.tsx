@@ -5,6 +5,7 @@ import { Zap, Sparkles, ShieldCheck, type LucideIcon } from "lucide-react";
 
 import { TextGradient } from "@/components/ui/text-gradient";
 import { BlurredStaggerText } from "@/components/ui/blurred-stagger-text";
+import { GlowCard } from "@/components/ui/spotlight-card";
 
 type Feature = {
   id: string;
@@ -73,26 +74,32 @@ export function AboutApproach() {
                 delay: reduce ? 0 : i * 0.3,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="rounded-2xl border border-[#ECE7F6] bg-white p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_18px_40px_-24px_rgba(99,48,199,0.14)] md:p-8"
+              className="h-full"
             >
-              <div className="flex size-10 items-center justify-center rounded-lg border border-brand/15 bg-[var(--brand-soft)] text-brand">
-                <f.Icon className="size-5" strokeWidth={2} aria-hidden />
-              </div>
-              <h3 className="mt-5 whitespace-nowrap text-[15px] font-semibold md:text-base">
-                <TextGradient
-                  as="span"
-                  children={f.title}
-                  colors={[...GRADIENT]}
-                  duration={6}
-                  angle={90}
-                  className="font-semibold"
+              <GlowCard
+                glowColor="purple"
+                customSize
+                className="flex h-full w-full flex-col gap-0 p-6 shadow-[0_1px_2px_rgba(20,18,38,0.04),0_18px_40px_-24px_rgba(99,48,199,0.14)] md:p-8"
+              >
+                <div className="flex size-10 items-center justify-center rounded-lg border border-brand/15 bg-[var(--brand-soft)] text-brand">
+                  <f.Icon className="size-5" strokeWidth={2} aria-hidden />
+                </div>
+                <h3 className="mt-5 text-[15px] font-semibold md:text-base">
+                  <TextGradient
+                    as="span"
+                    children={f.title}
+                    colors={[...GRADIENT]}
+                    duration={6}
+                    angle={90}
+                    className="font-semibold"
+                  />
+                </h3>
+                <BlurredStaggerText
+                  text={f.description}
+                  delay={0.25 + i * 0.55}
+                  className="mt-2 text-sm leading-relaxed text-muted-foreground"
                 />
-              </h3>
-              <BlurredStaggerText
-                text={f.description}
-                delay={0.25 + i * 0.55}
-                className="mt-2 text-sm leading-relaxed text-muted-foreground"
-              />
+              </GlowCard>
             </motion.div>
           ))}
         </div>
