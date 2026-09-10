@@ -43,6 +43,13 @@ const CSS = `
 const DESIGN_W = 1000;
 const DESIGN_H = 700;
 
+/* Below this column width the wide 3-across layout renders too small, so the
+ * scene switches to a stacked portrait canvas: phone on top (large), then the
+ * six context cards in a 2-column grid underneath. */
+const PORTRAIT_BELOW = 640;
+const DESIGN_W_P = 468;
+const DESIGN_H_P = 1180;
+
 const INK = "#1A1626";
 const MUTED = "#66607E";
 const BODY = "#6A6482";
@@ -186,6 +193,7 @@ export default function MeridiusFallanalyseVisual({
 }: Props) {
   const [tick, setTick] = useState(5);
   const [scale, setScale] = useState(0.7);
+  const [portrait, setPortrait] = useState(false);
   const [links, setLinks] = useState<Link[]>([]);
   const rootRef = useRef<HTMLDivElement>(null);
   const nodes = useRef<Record<string, HTMLElement | null>>({});
@@ -204,9 +212,11 @@ export default function MeridiusFallanalyseVisual({
       const root = rootRef.current;
       if (!root) return;
       const w = root.clientWidth;
-      if (w > 0) setScale(w / DESIGN_W);
+      const isP = w > 0 && w < PORTRAIT_BELOW;
+      setPortrait(isP);
+      if (w > 0) setScale(w / (isP ? DESIGN_W_P : DESIGN_W));
 
-      if (!showConnectors) {
+      if (!showConnectors || isP) {
         setLinks((prev) => (prev.length ? [] : prev));
         return;
       }
@@ -306,14 +316,19 @@ export default function MeridiusFallanalyseVisual({
         position: "relative",
         overflow: "hidden",
         width: "100%",
-        aspectRatio: "1000 / 700",
-        background:
-          "radial-gradient(46% 48% at 50% 50%, #F0EAFB 0%, #F7F4FD 42%, #FFFFFF 72%)",
+        aspectRatio: portrait
+          ? `${DESIGN_W_P} / ${DESIGN_H_P}`
+          : "1000 / 700",
+        background: portrait
+          ? "radial-gradient(92% 24% at 50% 19%, #F0EAFB 0%, #F7F4FD 46%, #FFFFFF 80%)"
+          : "radial-gradient(46% 48% at 50% 50%, #F0EAFB 0%, #F7F4FD 42%, #FFFFFF 72%)",
         // feather every edge into the page so there is no visible frame
-        WebkitMaskImage:
-          "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
-        maskImage:
-          "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
+        WebkitMaskImage: portrait
+          ? "linear-gradient(180deg, transparent 0%, #000 3%, #000 97%, transparent 100%)"
+          : "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
+        maskImage: portrait
+          ? "linear-gradient(180deg, transparent 0%, #000 3%, #000 97%, transparent 100%)"
+          : "radial-gradient(74% 76% at 50% 48%, #000 42%, transparent 100%)",
         color: INK,
       }}
     >
@@ -324,11 +339,11 @@ export default function MeridiusFallanalyseVisual({
           position: "absolute",
           top: 0,
           left: 0,
-          width: DESIGN_W,
-          height: DESIGN_H,
+          width: portrait ? DESIGN_W_P : DESIGN_W,
+          height: portrait ? DESIGN_H_P : DESIGN_H,
           transform: `scale(${scale})`,
           transformOrigin: "top left",
-          padding: 40,
+          padding: portrait ? "26px 24px" : 40,
           boxSizing: "border-box",
           display: "flex",
           alignItems: "center",
@@ -340,16 +355,19 @@ export default function MeridiusFallanalyseVisual({
             position: "relative",
             width: "100%",
             display: "flex",
-            alignItems: "center",
+            flexWrap: portrait ? "wrap" : "nowrap",
+            alignItems: portrait ? "flex-start" : "center",
             justifyContent: "center",
-            gap: 30,
+            gap: portrait ? 16 : 30,
+            rowGap: portrait ? 22 : undefined,
           }}
         >
           {/* left column */}
           <div
             style={{
-              flex: "0 0 202px",
-              width: 202,
+              flex: portrait ? "1 1 190px" : "0 0 202px",
+              width: portrait ? "auto" : 202,
+              order: portrait ? 1 : 0,
               display: "flex",
               flexDirection: "column",
               gap: 16,
@@ -547,8 +565,11 @@ export default function MeridiusFallanalyseVisual({
           <div
             ref={setNode("phone")}
             style={{
-              flex: "0 0 auto",
-              width: 258,
+              flex: portrait ? "0 0 100%" : "0 0 auto",
+              width: portrait ? "auto" : 258,
+              order: portrait ? -1 : 0,
+              display: portrait ? "flex" : undefined,
+              justifyContent: portrait ? "center" : undefined,
               filter:
                 "drop-shadow(0 48px 66px rgba(46,24,92,0.14)) drop-shadow(0 10px 20px rgba(46,24,92,0.07))",
             }}
@@ -556,6 +577,8 @@ export default function MeridiusFallanalyseVisual({
             <div
               style={{
                 position: "relative",
+                width: portrait ? 300 : undefined,
+                maxWidth: portrait ? "86%" : undefined,
                 aspectRatio: "352/730",
                 borderRadius: "12.5%/6%",
                 padding: "1.6%",
@@ -1165,8 +1188,9 @@ export default function MeridiusFallanalyseVisual({
           {/* right column */}
           <div
             style={{
-              flex: "0 0 202px",
-              width: 202,
+              flex: portrait ? "1 1 190px" : "0 0 202px",
+              width: portrait ? "auto" : 202,
+              order: portrait ? 2 : 0,
               display: "flex",
               flexDirection: "column",
               gap: 16,
