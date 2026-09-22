@@ -81,6 +81,26 @@ export function SceneFrame({
   const ref = React.useRef<HTMLIFrameElement | null>(null);
   const wrapRef = React.useRef<HTMLDivElement | null>(null);
   const [isPortrait, setIsPortrait] = React.useState(false);
+  const [shouldLoad, setShouldLoad] = React.useState(false);
+
+  React.useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || shouldLoad) return;
+
+    // Do not create the heavy iframe until the visual is near the viewport.
+    // Once loaded it stays mounted, avoiding reloads while scrolling back/forth.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { rootMargin: "300px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [shouldLoad]);
 
   React.useEffect(() => {
     if (!ratios) return;
@@ -161,6 +181,7 @@ export function SceneFrame({
         className,
       )}
     >
+      {shouldLoad && (
       <iframe
         ref={ref}
         src={src}
@@ -191,6 +212,7 @@ export function SceneFrame({
           ratios ? null : aspect,
         )}
       />
+      )}
     </div>
   );
 }

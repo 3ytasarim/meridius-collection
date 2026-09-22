@@ -3,7 +3,7 @@
 import type { ComponentProps, ReactNode } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone, Sparkle } from "lucide-react";
+import { Mail, MapPin, Sparkle } from "lucide-react";
 
 import { TextGradient } from "@/components/ui/text-gradient";
 import { WhirlpoolLoader } from "@/components/ui/loading-animation";
@@ -129,15 +129,6 @@ export function Footer() {
                     className="transition-colors hover:text-brand"
                   >
                     info@meridius-collection.ch
-                  </a>
-                </li>
-                <li className="flex items-start gap-2">
-                  <Phone className="mt-[3px] size-4 shrink-0 text-brand" />
-                  <a
-                    href="tel:+41554100000"
-                    className="transition-colors hover:text-brand"
-                  >
-                    +41 55 410 00 00
                   </a>
                 </li>
                 <li className="flex items-start gap-2">

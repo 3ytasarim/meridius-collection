@@ -55,7 +55,7 @@ const faqItems = [
     question:
       "Wie erreiche ich eine Sachbearbeiterin oder einen Sachbearbeiter?",
     answer:
-      "Am schnellsten über unseren Chat-Assistenten unten rechts, per E-Mail an info@meridius-collection.ch oder telefonisch zu unseren Geschäftszeiten (Mo–Fr, 08:00–17:30 Uhr).",
+      "Am schnellsten über unseren Chat-Assistenten unten rechts oder per E-Mail an info@meridius-collection.ch.",
   },
 ];
 

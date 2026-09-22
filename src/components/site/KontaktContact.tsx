@@ -1,5 +1,5 @@
 import type { ComponentType } from "react";
-import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+import { MapPin, Mail, Clock, ArrowUpRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { KontaktForm } from "@/components/form-1";
@@ -31,14 +31,6 @@ const cards: Card[] = [
     Icon: Clock,
     label: "Erreichbarkeit",
     lines: ["Mo–Fr, 08:00–17:30 Uhr"],
-  },
-  {
-    id: "telefon",
-    Icon: Phone,
-    label: "Telefon",
-    lines: ["+41 55 410 00 00"],
-    href: "tel:+41554100000",
-    ariaLabel: "Meridius Collection anrufen",
   },
   {
     id: "email",
@@ -100,9 +92,8 @@ export function KontaktContact() {
             </h2>
 
             <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#5B5568] sm:text-base">
-              Wir sind persönlich für Sie da. Kontaktieren Sie uns telefonisch,
-              per E-Mail oder besuchen Sie uns an unserem Standort in Pfäffikon
-              SZ.
+              Wir sind persönlich für Sie da. Kontaktieren Sie uns per E-Mail
+              oder besuchen Sie uns an unserem Standort in Pfäffikon SZ.
             </p>
 
             <div aria-hidden className="mt-7 flex items-center justify-center gap-2.5">

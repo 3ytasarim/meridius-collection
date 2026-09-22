@@ -28,7 +28,7 @@ const features: Feature[] = [
     id: "kontakt",
     title: "Nachvollziehbare Kontaktaufnahme",
     description:
-      "Kontaktieren Sie uns im Zweifel über die auf dieser Website angegebene Telefonnummer oder E-Mail-Adresse — nicht über Links aus einer fragwürdigen Nachricht.",
+      "Kontaktieren Sie uns im Zweifel über die auf dieser Website angegebene E-Mail-Adresse — nicht über Links aus einer fragwürdigen Nachricht.",
     Icon: PhoneCall,
   },
 ];

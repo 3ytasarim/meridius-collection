@@ -50,6 +50,11 @@ const GlowCard: React.FC<GlowCardProps> = ({
   const innerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Spotlight only needs pointer tracking on desktop-like devices.
+    // Avoid global pointer work on touch devices to preserve native scrolling.
+    const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+    if (!finePointer.matches) return;
+
     const syncPointer = (e: PointerEvent) => {
       const el = cardRef.current;
       if (!el) return;
@@ -60,7 +65,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       el.style.setProperty("--yp", (y / window.innerHeight).toFixed(2));
     };
 
-    document.addEventListener("pointermove", syncPointer);
+    document.addEventListener("pointermove", syncPointer, { passive: true });
     return () => document.removeEventListener("pointermove", syncPointer);
   }, []);
 
@@ -91,11 +96,11 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundSize:
         "calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)))",
       backgroundPosition: "50% 50%",
-      backgroundAttachment: "fixed",
+      backgroundAttachment: "scroll",
       border: "var(--border-size) solid var(--backup-border)",
       borderRadius: "calc(var(--radius) * 1px)",
       position: "relative",
-      touchAction: "none",
+      touchAction: "pan-y",
     };
 
     if (width !== undefined) {
@@ -117,7 +122,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       inset: calc(var(--border-size) * -1);
       border: var(--border-size) solid transparent;
       border-radius: calc(var(--radius) * 1px);
-      background-attachment: fixed;
+      background-attachment: scroll;
       background-size: calc(100% + (2 * var(--border-size))) calc(100% + (2 * var(--border-size)));
       background-repeat: no-repeat;
       background-position: 50% 50%;
