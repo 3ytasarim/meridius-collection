@@ -17,8 +17,9 @@ const navLinks = [
 ] as const;
 
 const rechtliches = [
-  { label: "Datenschutz", href: "#" },
-  { label: "Impressum", href: "#" },
+  { label: "Impressum", href: "/impressum" },
+  { label: "Datenschutz", href: "/datenschutz" },
+  { label: "AGB", href: "/agb" },
 ] as const;
 
 /**
@@ -106,12 +107,12 @@ export function Footer() {
               <ul className="mt-5 space-y-3 text-sm">
                 {rechtliches.map((l) => (
                   <li key={l.label}>
-                    <a
-                      href={l.href}
+                    <Link
+                      to={l.href}
                       className="text-muted-foreground transition-colors hover:text-brand"
                     >
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
